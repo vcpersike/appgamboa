@@ -1,0 +1,12 @@
+﻿@inject ProjectsViewModel ViewModel
+
+<section id="projects" class="projects-section">
+    <h2>Projetos</h2>
+    @foreach (var project in ViewModel.Projects)
+    {
+        <div class="project-card">
+            <h3>@project.Title</h3>
+            <p>@project.Description</p>
+        </div>
+    }
+</section>

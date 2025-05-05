@@ -1,4 +1,5 @@
 using AppGamboa.Shared.Services;
+using AppGamboa.Shared.ViewModels;
 using AppGamboa.Web.Components;
 using AppGamboa.Web.Services;
 
@@ -9,7 +10,15 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 // Add device-specific services used by the AppGamboa.Shared project
+builder.Services.AddScoped<HomeViewModel>();
+builder.Services.AddScoped<ContactViewModel>();
+builder.Services.AddScoped<ProjectsViewModel>();
+
 builder.Services.AddSingleton<IFormFactor, FormFactor>();
+builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+
+
 
 var app = builder.Build();
 

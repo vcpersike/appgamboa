@@ -1,0 +1,16 @@
+﻿<section id="home" class="hero-section">
+    <div class="hero-content">
+        <h1>Gamboa Solutions</h1>
+        <p>Tecnologia que impulsiona, inovação que transforma.</p>
+        <ButtonPrimary OnClick="() => NavigateToContact()">Fale Conosco</ButtonPrimary>
+    </div>
+</section>
+
+@code {
+    [Inject] NavigationManager Navigation { get; set; }
+
+    private void NavigateToContact()
+    {
+        Navigation.NavigateTo("#contact");
+    }
+}

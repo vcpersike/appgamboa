@@ -1,14 +1,14 @@
 ﻿@page "/"
-@using AppGamboa.Shared.Services
-@inject IFormFactor FormFactor
+@inject HomeViewModel ViewModel
 
-<PageTitle>Home novo teste</PageTitle>
+<Header />
 
-<h1>Hello, world! teste</h1>
+<HeroSection />
 
-Welcome to your new app running on <em>@factor</em> using <em>@platform</em>.
+<PhilosophySection />
 
-@code {
-    private string factor => FormFactor.GetFormFactor();
-    private string platform => FormFactor.GetPlatform();
-}
+<ProjectsSection />
+
+<ContactSection />
+
+<Footer />

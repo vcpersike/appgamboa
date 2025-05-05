@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35728.132 d17.12
+VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGamboa", "AppGamboa\AppGamboa.csproj", "{0336FD99-E57E-4DE1-A70E-9EBB0537E83D}"
 EndProject
@@ -16,6 +16,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0336FD99-E57E-4DE1-A70E-9EBB0537E83D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0336FD99-E57E-4DE1-A70E-9EBB0537E83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0336FD99-E57E-4DE1-A70E-9EBB0537E83D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{0336FD99-E57E-4DE1-A70E-9EBB0537E83D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0336FD99-E57E-4DE1-A70E-9EBB0537E83D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{433478CC-84B5-4741-8A64-24BED42BFCFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -29,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {628BD324-23E4-4873-84A7-10244721F9BD}
 	EndGlobalSection
 EndGlobal
