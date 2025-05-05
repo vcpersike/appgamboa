@@ -1,0 +1,9 @@
+﻿.btn-primary {
+    background-color: #FF851B;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    margin-top: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+}

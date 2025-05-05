@@ -1,0 +1,90 @@
+﻿.btn-glitch-fill {
+    display: inline-block;
+    font-family: "VT323", monospace;
+    border: 1px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    padding: 10px 13px;
+    min-width: 175px;
+    line-height: 1.5em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 280px;
+}
+
+    .btn-glitch-fill .text,
+    .btn-glitch-fill .decoration {
+        display: inline-block;
+    }
+
+    .btn-glitch-fill .decoration {
+        float: right;
+    }
+
+    .btn-glitch-fill:hover,
+    .btn-glitch-fill:focus {
+        animation: glitch 0.2s;
+        background-color: yellow;
+        color: black;
+        border-color: yellow;
+    }
+
+        .btn-glitch-fill:hover .text-decoration,
+        .btn-glitch-fill:hover .decoration {
+            animation: blink 0.1s infinite;
+        }
+
+    .btn-glitch-fill:active {
+        background: none;
+        color: yellow;
+    }
+
+        .btn-glitch-fill:active .text-decoration,
+        .btn-glitch-fill:active .decoration {
+            animation: none;
+        }
+
+@keyframes glitch {
+    25% {
+        background-color: red;
+        transform: translateX(-10px);
+        letter-spacing: 10px;
+    }
+
+    35% {
+        background-color: green;
+        transform: translateX(10px);
+    }
+
+    59% {
+        opacity: 0;
+    }
+
+    60% {
+        background-color: blue;
+        transform: translateX(-10px);
+        filter: blur(5px);
+    }
+
+    100% {
+        background-color: yellow;
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .btn-glitch-fill {
+        font-size: 1rem;
+        padding: 8px 10px;
+        min-width: auto;
+    }
+}

@@ -11,5 +11,7 @@ namespace AppGamboa.Shared.Models
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Message { get; set; } = string.Empty;
+        public byte[]? FileBytes { get; set; }
+        public string? FileName { get; set; }
     }
 }

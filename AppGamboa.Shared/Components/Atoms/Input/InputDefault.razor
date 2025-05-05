@@ -1,0 +1,20 @@
+﻿<input @bind="Value"
+       type="@Type"
+       placeholder="@Placeholder"
+       class="form-control"
+       @attributes="AdditionalAttributes" />
+
+@code {
+    [Parameter] public string Placeholder { get; set; } = string.Empty;
+    [Parameter] public string Type { get; set; } = "text";
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+    [Parameter] public string Value { get; set; } = string.Empty;
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+
+    private async Task OnValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value?.ToString() ?? "";
+        await ValueChanged.InvokeAsync(Value);
+    }
+}

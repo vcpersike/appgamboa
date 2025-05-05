@@ -17,26 +17,6 @@ header {
         font-weight: bold;
     }
 
-.hero-section {
-    height: 100vh;
-    background: linear-gradient(135deg, #0074D9, #7FDBFF);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.btn-primary {
-    background-color: #FF851B;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    margin-top: 1rem;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 section {
     padding: 4rem 2rem;
     text-align: center;
@@ -47,12 +27,4 @@ footer {
     color: white;
     padding: 1rem;
     text-align: center;
-}
-
-.project-card {
-    background: #f2f2f2;
-    padding: 1rem;
-    margin: 1rem auto;
-    max-width: 400px;
-    border-radius: 8px;
 }

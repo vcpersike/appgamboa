@@ -6,8 +6,7 @@ namespace AppGamboa.Shared.ViewModels
     public class ProjectsViewModel
     {
         private readonly IProjectService _projectService;
-
-        public List<ProjectModel> Projects { get; set; } = new();
+        public List<ProjectModel> Projects { get; private set; } = new();
 
         public ProjectsViewModel(IProjectService projectService)
         {

@@ -1,0 +1,22 @@
+﻿.input-cyber-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.input-cyber-label {
+    background-color: #0f0f0f;
+    color: #00ffff;
+    padding: 12px 24px;
+    border: 2px solid #00ffff;
+    border-radius: 12px;
+    font-family: "VT323", monospace;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 8px #00ffff99;
+}
+
+    .input-cyber-label:hover {
+        box-shadow: 0 0 15px #00ffff, 0 0 30px #ff00ff;
+    }

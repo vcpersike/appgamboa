@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@inject IJSRuntime JSRuntime
+
+<div class="input-cyber-wrapper">
+    <label for="@inputId" class="input-cyber-label">
+        <span class="input-cyber-text">📁 Escolha um arquivo</span>
+    </label>
+
+    <InputFile id="@inputId"
+               style="display: none;"
+               accept="@Accept"
+               OnChange="@HandleFileSelected"
+               @attributes="AdditionalAttributes" />
+</div>
+
+@code {
+    private string inputId = $"input-cyber-{Guid.NewGuid():N}";
+
+    [Parameter]
+    public string Accept { get; set; } = ".pdf";
+
+    [Parameter]
+    public EventCallback<InputFileChangeEventArgs> OnFileSelected { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        await OnFileSelected.InvokeAsync(e);
+    }
+}

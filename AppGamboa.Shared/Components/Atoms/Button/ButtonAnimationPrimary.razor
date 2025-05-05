@@ -1,0 +1,10 @@
+﻿<button class="btn-glitch-fill" @onclick="OnClick">
+    <span class="text">@Label</span>
+    <span class="text-decoration">_</span>
+    <span class="decoration">⇒</span>
+</button>
+
+@code {
+    [Parameter] public string Label { get; set; } = "// Hover me";
+    [Parameter] public EventCallback OnClick { get; set; }
+}

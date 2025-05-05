@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using AppGamboa.Shared.Components.Atoms
+
+<div class="input__container">
+    <div class="shadow__input"></div>
+
+    <InputFileCustom Accept="@Accept"
+                    OnFileSelected="@OnFileSelected"
+                    @attributes="AdditionalAttributes" />
+</div>
+
+@code {
+    [Parameter]
+    public string Accept { get; set; } = ".pdf";
+
+    [Parameter]
+    public EventCallback<InputFileChangeEventArgs> OnFileSelected { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+}

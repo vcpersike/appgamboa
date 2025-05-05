@@ -1,12 +1,18 @@
 ﻿@inject ProjectsViewModel ViewModel
 
-<section id="projects" class="projects-section">
+<section>
     <h2>Projetos</h2>
-    @foreach (var project in ViewModel.Projects)
-    {
-        <div class="project-card">
-            <h3>@project.Title</h3>
-            <p>@project.Description</p>
-        </div>
-    }
+    <div class="projects-section">
+        @foreach (var project in ViewModel.Projects)
+        {
+            <CardProject Title="@project.Title" Description="@project.Description" />
+        }
+    </div>
 </section>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await ViewModel.LoadProjectsAsync();
+    }
+}

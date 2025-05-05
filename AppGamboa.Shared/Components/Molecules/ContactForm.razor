@@ -1,13 +1,39 @@
 ﻿@inject ContactViewModel ViewModel
 
 <form @onsubmit="HandleSubmit">
-    <InputText @bind-Value="ViewModel.Form.Name" placeholder="Nome" />
-    <InputText @bind-Value="ViewModel.Form.Email" placeholder="Email" />
-    <textarea @bind="ViewModel.Form.Message" placeholder="Mensagem"></textarea>
-    <ButtonPrimary OnClick="HandleSubmit">Enviar</ButtonPrimary>
+
+    <InputCyber Placeholder="Nome" @bind-Value="ViewModel.Form.Name" />
+    <InputDefault Placeholder="Email" @bind-Value="ViewModel.Form.Email" Type="email" />
+    
+    <InputTextAreaDefault Placeholder="Mensagem" @bind-Value="ViewModel.Form.Message" />
+
+    <InputCyberFile OnFileSelected="HandleFileSelected" />
+
+    <ButtonAnimationPrimary Label="Enviar" OnClick="@HandleSubmit" />
+
 </form>
 
+
 @code {
+    private IBrowserFile? uploadedFile;
+
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+
+        if (file.ContentType != "application/pdf")
+        {
+            return;
+        }
+
+        uploadedFile = file;
+
+        using var stream = new MemoryStream();
+        await file.OpenReadStream().CopyToAsync(stream);
+        ViewModel.Form.FileBytes = stream.ToArray();
+        ViewModel.Form.FileName = file.Name;
+    }
+
     private async Task HandleSubmit()
     {
         await ViewModel.SendAsync();

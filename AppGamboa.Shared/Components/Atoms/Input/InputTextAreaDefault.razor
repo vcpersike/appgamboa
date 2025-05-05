@@ -1,0 +1,12 @@
+﻿<textarea class="input__textarea"
+          placeholder="@Placeholder"
+          @bind="Value"
+          @attributes="AdditionalAttributes">
+</textarea>
+
+@code {
+    [Parameter] public string Placeholder { get; set; } = string.Empty;
+    [Parameter] public string Value { get; set; } = string.Empty;
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+    [Parameter] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+}
