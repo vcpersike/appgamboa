@@ -2,8 +2,13 @@
 @inject IJSRuntime JSRuntime
 
 <div class="input-cyber-wrapper">
+    <button type="button" class="input__button__shadow">
+        <span>
+            📁
+        </span>
+    </button>
     <label for="@inputId" class="input-cyber-label">
-        <span class="input-cyber-text">📁 Escolha um arquivo</span>
+        <span class="input-cyber-span">Escolha um arquivo</span>
     </label>
 
     <InputFile id="@inputId"
