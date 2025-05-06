@@ -1,17 +1,20 @@
 ﻿@inject ContactViewModel ViewModel
 
-<form @onsubmit="HandleSubmit">
+<del class="contact-section">
+    <form @onsubmit="HandleSubmit">
 
-    <InputCyber Placeholder="Nome" @bind-Value="ViewModel.Form.Name" />
-    <InputDefault Placeholder="Email" @bind-Value="ViewModel.Form.Email" Type="email" />
-    
-    <InputTextAreaDefault Placeholder="Mensagem" @bind-Value="ViewModel.Form.Message" />
+        <InputCyber Placeholder="Nome" @bind-Value="ViewModel.Form.Name" />
+        
+        <InputDefault Placeholder="Email" @bind-Value="ViewModel.Form.Email" Type="email" />
 
-    <InputCyberFile OnFileSelected="HandleFileSelected" />
+        <InputTextAreaDefault Placeholder="Mensagem" @bind-Value="ViewModel.Form.Message" />
 
-    <ButtonAnimationPrimary Label="Enviar" OnClick="@HandleSubmit" />
+        <InputCyberFile OnFileSelected="HandleFileSelected" />
 
-</form>
+        <ButtonAnimationPrimary Label="Enviar" OnClick="@HandleSubmit" />
+
+    </form>
+</del>
 
 
 @code {
