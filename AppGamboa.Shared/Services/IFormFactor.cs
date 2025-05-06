@@ -4,5 +4,6 @@ namespace AppGamboa.Shared.Services
     {
         public string GetFormFactor();
         public string GetPlatform();
+        bool IsMobile();
     }
 }

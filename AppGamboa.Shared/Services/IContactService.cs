@@ -9,7 +9,7 @@ namespace AppGamboa.Shared.Services
 {
     public interface IContactService
     {
-        Task SendContactAsync(ContactFormModel form);
+        Task SendContactMessage(ContactFormModel contactForm);
     }
 
 }

@@ -2,6 +2,7 @@
 using AppGamboa.Shared.Services;
 using AppGamboa.Shared.ViewModels;
 using Microsoft.Extensions.Logging;
+using MudBlazor.Services;
 
 namespace AppGamboa
 {
@@ -17,7 +18,16 @@ namespace AppGamboa
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
 
-            // Add device-specific services used by the AppGamboa.Shared project
+            builder.Services.AddMudServices(config =>
+            {
+                config.SnackbarConfiguration.PositionClass = MudBlazor.Defaults.Classes.Position.BottomCenter;
+                config.SnackbarConfiguration.PreventDuplicates = false;
+                config.SnackbarConfiguration.NewestOnTop = false;
+                config.SnackbarConfiguration.ShowCloseIcon = true;
+                config.SnackbarConfiguration.VisibleStateDuration = 5000;
+                config.SnackbarConfiguration.HideTransitionDuration = 300;
+                config.SnackbarConfiguration.ShowTransitionDuration = 300;
+            });
             builder.Services.AddSingleton<IFormFactor, FormFactor>();
             builder.Services.AddSingleton<IProjectService, ProjectService>();
             builder.Services.AddSingleton<IContactService, ContactService>();

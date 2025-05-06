@@ -1,6 +1,116 @@
-﻿@inject ContactViewModel ViewModel
+﻿@using AppGamboa.Shared.ViewModels
+@using AppGamboa.Shared.Models
+@inject ContactViewModel ViewModel
+@inject ISnackbar Snackbar
 
-<section id="contact" class="contact-section">
-    <h2>Contato</h2>
-    <ContactForm />
-</section>
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="py-16" id="contact">
+    <MudText Typo="Typo.h2" Align="Align.Center" Color="Color.Secondary" Class="mb-12">
+        Entre em Contato
+    </MudText>
+
+    <MudGrid>
+        <MudItem xs="12" md="6">
+            <MudPaper Elevation="0" Class="pa-4">
+                <MudText Typo="Typo.h4" Class="mb-4">Vamos Conversar</MudText>
+                <MudText Class="mb-6">
+                    Estamos prontos para transformar sua ideia em realidade. Entre em contato
+                    conosco e descubra como podemos ajudar seu negócio a crescer com soluções
+                    tecnológicas personalizadas.
+                </MudText>
+
+                <div>
+                    <div class="d-flex gap-3 align-center mb-3">
+                        <MudIcon Icon="@Icons.Material.Filled.Email" />
+                        <MudText>contato@appgamboa.com.br</MudText>
+                    </div>
+                    <div class="d-flex gap-3 align-center mb-3">
+                        <MudIcon Icon="@Icons.Material.Filled.Phone" />
+                        <MudText>+55 (11) 99999-9999</MudText>
+                    </div>
+                    <div class="d-flex gap-3 align-center mb-3">
+                        <MudIcon Icon="@Icons.Material.Filled.LocationOn" />
+                        <MudText>São Paulo, SP - Brasil</MudText>
+                    </div>
+                </div>
+
+                <MudDivider Class="my-6" />
+
+                <MudText Class="mb-4">Nos siga nas redes sociais:</MudText>
+                <div class="d-flex gap-4">
+                    <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Dark" Size="Size.Large" />
+                    <MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Color="Color.Primary" Size="Size.Large" />
+                    <MudIconButton Icon="@Icons.Custom.Brands.Twitter" Color="Color.Info" Size="Size.Large" />
+                </div>
+            </MudPaper>
+        </MudItem>
+
+        <MudItem xs="12" md="6">
+            <MudPaper Elevation="3" Class="pa-6">
+                <EditForm Model="@ViewModel.ContactForm" OnValidSubmit="HandleValidSubmit">
+                    <DataAnnotationsValidator />
+
+                    <MudTextField T="string"
+                                  Label="Nome"
+                                  @bind-Value="ViewModel.ContactForm.Name"
+                                  For="@(() => ViewModel.ContactForm.Name)"
+                                  Variant="Variant.Outlined"
+                                  Class="mb-4" />
+
+                    <MudTextField T="string"
+                                  Label="Email"
+                                  @bind-Value="ViewModel.ContactForm.Email"
+                                  For="@(() => ViewModel.ContactForm.Email)"
+                                  Variant="Variant.Outlined"
+                                  Class="mb-4" />
+
+                    <MudTextField T="string"
+                                  Label="Assunto"
+                                  @bind-Value="ViewModel.ContactForm.Subject"
+                                  For="@(() => ViewModel.ContactForm.Subject)"
+                                  Variant="Variant.Outlined"
+                                  Class="mb-4" />
+
+                    <MudTextField T="string"
+                                  Label="Mensagem"
+                                  @bind-Value="ViewModel.ContactForm.Message"
+                                  For="@(() => ViewModel.ContactForm.Message)"
+                                  Lines="5"
+                                  Variant="Variant.Outlined"
+                                  Class="mb-4" />
+
+                    <div class="d-flex justify-end mt-4">
+                        <MudButton ButtonType="ButtonType.Submit"
+                                   Variant="Variant.Filled"
+                                   Color="Color.Primary"
+                                   Size="Size.Large"
+                                   StartIcon="@Icons.Material.Filled.Send"
+                                   Disabled="@ViewModel.IsSubmitting">
+                            @(ViewModel.IsSubmitting ? "Enviando..." : "Enviar Mensagem")
+                        </MudButton>
+                    </div>
+                </EditForm>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            ViewModel.IsSubmitting = true;
+            await ViewModel.SubmitContactForm();
+            Snackbar.Add("Mensagem enviada com sucesso! Entraremos em contato em breve.", Severity.Success);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add("Erro ao enviar mensagem. Por favor, tente novamente.", Severity.Error);
+            Console.WriteLine($"Erro: {ex.Message}");
+        }
+        finally
+        {
+            ViewModel.IsSubmitting = false;
+        }
+    }
+}

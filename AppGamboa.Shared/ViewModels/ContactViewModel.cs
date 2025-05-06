@@ -1,4 +1,5 @@
-﻿using AppGamboa.Shared.Models;
+﻿using System.Threading.Tasks;
+using AppGamboa.Shared.Models;
 using AppGamboa.Shared.Services;
 
 namespace AppGamboa.Shared.ViewModels
@@ -10,17 +11,21 @@ namespace AppGamboa.Shared.ViewModels
         public ContactViewModel(IContactService contactService)
         {
             _contactService = contactService;
-            Form = new ContactFormModel();
+            ContactForm = new ContactFormModel();
+            IsSubmitting = false;
         }
 
-        public ContactFormModel Form { get; set; }
+        public ContactFormModel ContactForm { get; set; }
 
-        public string StatusMessage { get; set; } = string.Empty;
+        public bool IsSubmitting { get; set; }
 
-        public async Task SendAsync()
+        public async Task SubmitContactForm()
         {
-            await _contactService.SendContactAsync(Form);
-            StatusMessage = "Mensagem enviada com sucesso!";
+            if (ContactForm != null)
+            {
+                await _contactService.SendContactMessage(ContactForm);
+                ContactForm = new ContactFormModel();
+            }
         }
     }
 }

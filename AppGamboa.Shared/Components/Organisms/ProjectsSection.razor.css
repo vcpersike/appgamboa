@@ -1,7 +1,11 @@
-﻿.projects-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem;
-    justify-content: center;
+﻿.project-card {
+    transition: transform 0.3s ease;
+}
+
+    .project-card:hover {
+        transform: translateY(-8px);
+    }
+
+.bg-primary-lighten {
+    background-color: rgba(var(--mud-palette-primary-rgb), 0.12);
 }

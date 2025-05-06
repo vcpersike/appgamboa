@@ -5,7 +5,7 @@ namespace AppGamboa.Web.Services
 {
     public class ProjectService : IProjectService
     {
-        public Task<List<ProjectModel>> GetProjectsAsync()
+        public Task<List<ProjectModel>> GetProjects()
         {
             var projects = new List<ProjectModel>
             {

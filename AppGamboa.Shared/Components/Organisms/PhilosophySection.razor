@@ -1,9 +1,73 @@
-﻿<section id="philosophy" class="philosophy-section">
-    <h2>Nossa Filosofia</h2>
-    <p>Acreditamos que a tecnologia é uma ponte entre ideias visionárias e resultados concretos.</p>
-    <ul>
-        <li><strong>Excelência:</strong> buscamos a perfeição em cada entrega.</li>
-        <li><strong>Inovação:</strong> questionamos o comum para criar o extraordinário.</li>
-        <li><strong>Compromisso:</strong> seu sucesso é o nosso propósito.</li>
-    </ul>
-</section>
+﻿<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="py-16" id="philosophy">
+    <MudText Typo="Typo.h2" Align="Align.Center" Color="Color.Secondary" Class="mb-12">
+        Nossa Filosofia
+    </MudText>
+
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="12" md="4">
+            <MudCard Elevation="3" Class="h-100 mud-theme-primary">
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <MudAvatar Color="Color.Primary" Size="Size.Large">
+                            <MudIcon Icon="@Icons.Material.Filled.Architecture" />
+                        </MudAvatar>
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h5">Arquitetura Sólida</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText>
+                        Nosso código é construído sobre princípios sólidos de Domain-Driven Design (DDD)
+                        e SOLID, garantindo aplicações robustas, manuteníveis e escaláveis que evoluem
+                        com seu negócio.
+                    </MudText>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <MudItem xs="12" md="4">
+            <MudCard Elevation="3" Class="h-100 mud-theme-secondary">
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <MudAvatar Color="Color.Secondary" Size="Size.Large">
+                            <MudIcon Icon="@Icons.Material.Filled.DeviceHub" />
+                        </MudAvatar>
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h5">Tecnologia de Ponta</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText>
+                        Utilizamos as mais recentes tecnologias .NET, incluindo Blazor e MAUI,
+                        para criar aplicações modernas que funcionam em qualquer plataforma com
+                        desempenho excepcional.
+                    </MudText>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <MudItem xs="12" md="4">
+            <MudCard Elevation="3" Class="h-100 mud-theme-tertiary">
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <MudAvatar Color="Color.Tertiary" Size="Size.Large">
+                            <MudIcon Icon="@Icons.Material.Filled.PeopleAlt" />
+                        </MudAvatar>
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h5">Cliente no Centro</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText>
+                        Mais do que código, entregamos soluções que resolvem problemas reais.
+                        Trabalhamos em parceria com nossos clientes, entendendo suas necessidades
+                        e superando expectativas.
+                    </MudText>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</MudContainer>

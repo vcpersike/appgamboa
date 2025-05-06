@@ -1,0 +1,47 @@
+﻿@page "/mudtest"
+
+<MudText Typo="Typo.h3" Color="Color.Primary" Class="mb-4">Teste do MudBlazor</MudText>
+
+<MudPaper Class="pa-4 mb-4">
+    <MudGrid>
+        <MudItem xs="12" sm="6">
+            <MudTextField @bind-Value="TextValue" Label="Digite algo" Variant="Variant.Outlined" />
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ShowAlert" Class="mt-4">
+                Clique aqui
+            </MudButton>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+<MudCard Class="mt-4">
+    <MudCardContent>
+        <MudAlert Severity="@AlertSeverity" Variant="Variant.Filled" ShowCloseIcon="true"
+                  CloseIconClicked="() => AlertVisible = false" Class="mt-2"
+                  Style="@(!AlertVisible ? "display: none" : "")">
+            @AlertMessage
+        </MudAlert>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    private string TextValue { get; set; } = "";
+    private string AlertMessage { get; set; } = "MudBlazor está funcionando!";
+    private bool AlertVisible { get; set; } = false;
+    private Severity AlertSeverity { get; set; } = Severity.Success;
+
+    private void ShowAlert()
+    {
+        AlertVisible = true;
+
+        if (string.IsNullOrWhiteSpace(TextValue))
+        {
+            AlertMessage = "MudBlazor está funcionando!";
+        }
+        else
+        {
+            AlertMessage = $"Você digitou: {TextValue}";
+        }
+    }
+}

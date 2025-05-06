@@ -1,8 +1,52 @@
-﻿<header class="header">
-    <nav>
-        <a href="#home">Início</a>
-        <a href="#philosophy">Filosofia</a>
-        <a href="#projects">Projetos</a>
-        <a href="#contact">Contato</a>
-    </nav>
-</header>
+﻿<MudAppBar Elevation="0" Color="Color.Transparent" Style="background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);">
+    <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="d-flex justify-space-between align-center py-2">
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudText Typo="Typo.h5" Color="Color.Primary" Class="cursor-pointer">AppGamboa</MudText>
+        </MudHidden>
+        <MudHidden Breakpoint="Breakpoint.MdAndUp">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Primary" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+        </MudHidden>
+
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <div class="d-flex gap-4">
+                <MudButton Href="#" Color="Color.Primary" Variant="Variant.Text">Home</MudButton>
+                <MudButton Href="#philosophy" Color="Color.Primary" Variant="Variant.Text">Filosofia</MudButton>
+                <MudButton Href="#projects" Color="Color.Primary" Variant="Variant.Text">Projetos</MudButton>
+                <MudButton Href="#contact" Color="Color.Primary" Variant="Variant.Text">Contato</MudButton>
+            </div>
+        </MudHidden>
+
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   StartIcon="@Icons.Material.Filled.Email"
+                   Href="#contact">
+            Fale Conosco
+        </MudButton>
+    </MudContainer>
+</MudAppBar>
+
+<MudDrawer @bind-Open="_drawerOpen" Elevation="1" Variant="@DrawerVariant.Temporary" CloseOnClickAway="true">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h5" Color="Color.Primary">AppGamboa</MudText>
+    </MudDrawerHeader>
+    <MudNavMenu>
+        <MudNavLink Href="#" Icon="@Icons.Material.Filled.Home" OnClick="@CloseDrawer">Home</MudNavLink>
+        <MudNavLink Href="#philosophy" Icon="@Icons.Material.Filled.Psychology" OnClick="@CloseDrawer">Filosofia</MudNavLink>
+        <MudNavLink Href="#projects" Icon="@Icons.Material.Filled.Code" OnClick="@CloseDrawer">Projetos</MudNavLink>
+        <MudNavLink Href="#contact" Icon="@Icons.Material.Filled.Email" OnClick="@CloseDrawer">Contato</MudNavLink>
+    </MudNavMenu>
+</MudDrawer>
+
+@code {
+    private bool _drawerOpen = false;
+
+    private void ToggleDrawer()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    private void CloseDrawer()
+    {
+        _drawerOpen = false;
+    }
+}

@@ -1,21 +1,31 @@
 ﻿using AppGamboa.Shared.Models;
 using AppGamboa.Shared.Services;
 
-namespace AppGamboa.Shared.ViewModels
+public class ProjectsViewModel
 {
-    public class ProjectsViewModel
+    private readonly IProjectService _projectService;
+    private List<ProjectModel> _projects;
+
+    public ProjectsViewModel(IProjectService projectService)
     {
-        private readonly IProjectService _projectService;
-        public List<ProjectModel> Projects { get; private set; } = new();
+        _projectService = projectService;
+        _projects = new List<ProjectModel>(); // Inicializa como lista vazia em vez de null
+        LoadProjects();
+    }
 
-        public ProjectsViewModel(IProjectService projectService)
+    public List<ProjectModel> Projects => _projects ?? new List<ProjectModel>();
+
+    private async void LoadProjects()
+    {
+        try
         {
-            _projectService = projectService;
+            var projects = await _projectService.GetProjects();
+            _projects = projects ?? new List<ProjectModel>();
         }
-
-        public async Task LoadProjectsAsync()
+        catch (Exception ex)
         {
-            Projects = await _projectService.GetProjectsAsync();
+            Console.WriteLine($"Erro ao carregar projetos: {ex.Message}");
+            _projects = new List<ProjectModel>();
         }
     }
 }

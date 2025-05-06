@@ -4,6 +4,6 @@ namespace AppGamboa.Shared.Services
 {
     public interface IProjectService
     {
-        Task<List<ProjectModel>> GetProjectsAsync();
+        Task<List<ProjectModel>> GetProjects();
     }
 }

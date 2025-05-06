@@ -1,4 +1,10 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
+
+<MudThemeProvider />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
 <div>
     <main>
@@ -7,3 +13,36 @@
         </article>
     </main>
 </div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            await Task.Delay(200);
+
+            try
+            {
+                // Verifica se o script MudBlazor está disponível
+                await JSRuntime.InvokeVoidAsync("eval", @"
+                    if (typeof window.mudElementRef === 'undefined') {
+                        window.mudElementRef = {
+                            addOnBlurEvent: function(element, elementId, dotNetHelper) {
+                                if (!element) return;
+                                element.addEventListener('blur', function() {
+                                    dotNetHelper.invokeMethodAsync('OnBlur');
+                                });
+                            }
+                        };
+                    }
+                ");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao inicializar MudBlazor: {ex.Message}");
+            }
+        }
+    }
+}

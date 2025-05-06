@@ -1,18 +1,69 @@
-﻿@inject ProjectsViewModel ViewModel
+﻿@using AppGamboa.Shared.ViewModels
+@inject ProjectsViewModel ViewModel
 
-<section>
-    <h2>Projetos</h2>
-    <div class="projects-section">
-        @foreach (var project in ViewModel.Projects)
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="py-16" id="projects">
+    <MudText Typo="Typo.h2" Align="Align.Center" Color="Color.Primary" Class="mb-12">
+        Projetos em Destaque
+    </MudText>
+
+    <MudGrid>
+        @if (ViewModel?.Projects != null && ViewModel.Projects.Any())
         {
-            <CardProject Title="@project.Title" Description="@project.Description" />
-        }
-    </div>
-</section>
+            @foreach (var project in ViewModel.Projects)
+            {
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard Elevation="3" Class="h-100 project-card">
+                        @if (!string.IsNullOrEmpty(project?.ImageUrl))
+                        {
+                            <MudCardMedia Image="@project.ImageUrl" Height="200" />
+                        }
+                        <MudCardContent>
+                            <MudText Typo="Typo.h5" Class="mb-2">@(project?.Title ?? "Projeto")</MudText>
+                            <MudText Typo="Typo.body2" Class="mb-4">@(project?.Description ?? "Descrição não disponível")</MudText>
 
-@code {
-    protected override async Task OnInitializedAsync()
-    {
-        await ViewModel.LoadProjectsAsync();
-    }
-}
+                            @if (project?.Technologies != null && project.Technologies.Any())
+                            {
+                                <div class="d-flex flex-wrap gap-2 mb-3">
+                                    @foreach (var tech in project.Technologies)
+                                    {
+                                        <MudText Color="Color.Primary"
+                                                 Class="mud-chip-text px-3 py-1 rounded-pill bg-primary-lighten"
+                                                 Style="font-size: 0.75rem;">
+                                            @tech
+                                        </MudText>
+                                    }
+                                </div>
+                            }
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Variant="Variant.Text"
+                                       Color="Color.Primary"
+                                       EndIcon="@Icons.Material.Filled.ArrowForward"
+                                       Href="@(project?.Url ?? "#")"
+                                       Target="_blank">
+                                Ver Detalhes
+                            </MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+            }
+        }
+        else
+        {
+            <MudItem xs="12">
+                <MudAlert Severity="Severity.Info">
+                    Nenhum projeto disponível no momento.
+                </MudAlert>
+            </MudItem>
+        }
+    </MudGrid>
+
+    <MudContainer MaxWidth="MaxWidth.Medium" Class="d-flex justify-center mt-8">
+        <MudButton Variant="Variant.Outlined"
+                   Color="Color.Primary"
+                   Size="Size.Large"
+                   EndIcon="@Icons.Material.Filled.MoreHoriz">
+            Ver Todos os Projetos
+        </MudButton>
+    </MudContainer>
+</MudContainer>

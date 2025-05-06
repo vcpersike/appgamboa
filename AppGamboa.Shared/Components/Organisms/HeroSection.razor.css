@@ -1,9 +1,25 @@
-﻿.hero-section {
-    height: 100vh;
-    background: linear-gradient(135deg, #0074D9, #7FDBFF);
-    color: white;
+﻿
+.hero-section {
+    min-height: 90vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
+
+.mud-text-gradient {
+    background: linear-gradient(to right, var(--mud-palette-primary), var(--mud-palette-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .hero-image:hover {
+        transform: scale(1.05);
+    }
+
+

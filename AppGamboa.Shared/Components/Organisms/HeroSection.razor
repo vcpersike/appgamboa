@@ -1,16 +1,40 @@
-﻿<section id="home" class="hero-section">
-    <div class="hero-content">
-        <h1>Gamboa Solutions</h1>
-        <p>Tecnologia que impulsiona, inovação que transforma.</p>
-        <ButtonPrimary OnClick="() => NavigateToContact()">Fale Conosco</ButtonPrimary>
-    </div>
-</section>
+﻿@using AppGamboa.Shared.ViewModels
 
-@code {
-    [Inject] NavigationManager Navigation { get; set; }
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="hero-section py-16">
+    <MudGrid>
+        <MudItem xs="12" md="6" Class="d-flex flex-column justify-center">
+            <MudText Typo="Typo.h1" Color="Color.Primary" Class="mb-4 mud-text-gradient">
+                Ateliê de Software AppGamboa
+            </MudText>
+            <MudText Typo="Typo.h5" Class="mb-8">
+                Transformamos ideias em soluções digitais com arquitetura sólida e design elegante.
+                Expertise em tecnologias .NET, Blazor e desenvolvimento multiplataforma.
+            </MudText>
+            <div Class="d-flex flex-wrap gap-3">
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           Size="Size.Large"
+                           StartIcon="@Icons.Material.Filled.Code"
+                           Href="#services">
+                    Nossos Serviços
+                </MudButton>
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Primary"
+                           Size="Size.Large"
+                           StartIcon="@Icons.Material.Filled.Email"
+                           Href="#contact">
+                    Entre em Contato
+                </MudButton>
+            </div>
+        </MudItem>
+        <MudItem xs="12" md="6" Class="d-flex justify-center align-center">
+            <MudPaper Elevation="0" Class="pa-4 mud-background-transparent">
+                <MudImage Src="_content/AppGamboa.Shared/images/hero-image.svg"
+                          Alt="Desenvolvimento de Software"
+                          Elevation="0"
+                          Class="rounded-lg hero-image" />
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
 
-    private void NavigateToContact()
-    {
-        Navigation.NavigateTo("#contact");
-    }
-}

@@ -5,7 +5,7 @@ namespace AppGamboa.Web.Services
 {
     public class ContactService : IContactService
     {
-        public Task SendContactAsync(ContactFormModel form)
+        public Task SendContactMessage(ContactFormModel form)
         {
             // Simula envio com delay e exibe dados no console
             Console.WriteLine("=== Contato recebido ===");

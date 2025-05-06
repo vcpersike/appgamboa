@@ -13,5 +13,10 @@ namespace AppGamboa.Web.Services
         {
             return Environment.OSVersion.ToString();
         }
+
+        public bool IsMobile() 
+        {
+            return false;
+        }
     }
 }

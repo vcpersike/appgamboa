@@ -1,14 +1,28 @@
 ﻿@page "/"
 @inject HomeViewModel ViewModel
+@inject NavigationManager NavigationManager
 
 <Header />
-
 <HeroSection />
 
+<div class="container d-flex justify-content-center my-4">
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Primary"
+               Size="Size.Large"
+               OnClick="@(() => NavigationManager.NavigateTo("/mudtest"))"
+               StartIcon="@Icons.Material.Filled.Code">
+        Testar MudBlazor
+    </MudButton>
+</div>
+
 <PhilosophySection />
-
 <ProjectsSection />
-
 <ContactSection />
-
 <Footer />
+
+@code {
+    private void NavigateToTest()
+    {
+        NavigationManager.NavigateTo("/mudtest");
+    }
+}
