@@ -1,0 +1,13 @@
+services:
+  appgamboa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8092:7007"
+    restart: always
+    volumes:
+      - data-protection-keys:/root/.aspnet/DataProtection-Keys
+
+volumes:
+  data-protection-keys:

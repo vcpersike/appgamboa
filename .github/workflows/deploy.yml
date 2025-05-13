@@ -1,0 +1,73 @@
+name: Deploy to Oracle VM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Fazer checkout do repositório
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      # 2) Set up Docker Buildx (para build avançado e cache)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 3) Login no Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # 4) Buildar e enviar (push) a imagem para o Docker Hub
+      - name: Build and push frontend Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: '{{defaultContext}}'
+          push: true
+          tags: |
+            devvictorpersike/appgamboa:latest
+            devvictorpersike/appgamboa:${{ github.run_number }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # 5) Disparar webhook do Portainer
+      - name: Trigger Portainer Stack update
+        env:
+          WEBHOOK_URL: ${{ secrets.PORTAINER_WEBHOOK }}
+        run: |
+          echo "🔔 Chamando webhook do Portainer..."
+          curl -X POST "$WEBHOOK_URL" \
+            --fail \
+            --show-error \
+            --silent
+      # 5) Preparar SSH (criar ~/.ssh/id_rsa, permissões, known_hosts)
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_RSA_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      # 6) Testar a conexão SSH (opcional mas recomendado)
+      - name: Test SSH connection
+        run: |
+          ssh -o StrictHostKeyChecking=no "${{ secrets.SSH_USER }}"@"${{ secrets.SSH_HOST }}" "echo 'SSH connection successful'"
+
+        # 7) Aguardar e limpar imagens Docker não usadas no servidor remoto
+      - name: Clean up unused Docker images
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+        run: |
+          echo "⏳ Aguardando 30 segundos antes da limpeza..."
+          sleep 30
+          echo "🗑️ Limpando imagens Docker não usadas em $SSH_HOST"
+          ssh -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" \
+            "docker image prune -af"

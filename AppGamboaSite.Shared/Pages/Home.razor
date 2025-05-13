@@ -1,0 +1,14 @@
+﻿@page "/"
+@using AppGamboaSite.Shared.Services
+@inject IFormFactor FormFactor
+
+<PageTitle>Home</PageTitle>
+
+<h1>Teste</h1>
+rs
+teste teste <em>@factor</em> using <em>@platform</em>.
+
+@code {
+    private string factor => FormFactor.GetFormFactor();
+    private string platform => FormFactor.GetPlatform();
+}

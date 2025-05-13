@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  app:
+    image: devvictorpersike/appgamboa:latest
+    container_name: appgamboa
+    restart: always
+    networks:
+      - traefik_traefik_public
+    ports:
+      - "8086:7007"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=Host(`gamboasolutions.com.br`)"
+      - "traefik.http.services.app.loadbalancer.server.port=7007"
+      - "traefik.http.routers.app.entrypoints=websecure"
+      - "traefik.http.routers.app.tls.certresolver=le"
+      - "traefik.docker.network=traefik_traefik_public"
+      - "traefik.http.middlewares.app-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.app.middlewares=app-redirect"
+      - "traefik.http.routers.app.middlewares=app-redirect@docker"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+networks:
+  traefik_traefik_public:
+    external: true
