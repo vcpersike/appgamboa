@@ -1,6 +1,7 @@
 ﻿using AppGamboaSite.Services;
 using AppGamboaSite.Shared.Services;
 using Microsoft.Extensions.Logging;
+using MudBlazor.Services;
 
 namespace AppGamboaSite
 {
@@ -18,6 +19,7 @@ namespace AppGamboaSite
 
             // Add device-specific services used by the AppGamboaSite.Shared project
             builder.Services.AddSingleton<IFormFactor, FormFactor>();
+            builder.Services.AddMudServices();
 
             builder.Services.AddMauiBlazorWebView();
 
