@@ -8,7 +8,6 @@ namespace AppGamboaSite.Shared.Models
 {
     public class ButtonModel
     {
-        public string Label { get; set; }
-        public string CssClass { get; set; }
+        public string Text { get; set; }
     }
 }

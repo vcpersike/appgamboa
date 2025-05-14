@@ -1,19 +1,25 @@
-﻿@inject IButtonService ButtonService
+﻿@using AppGamboaSite.ViewModels
+@using AppGamboaSite.Shared.Models
+@inject IButtonService ButtonService
 
 <MudButton @onclick="HandleClick" Variant="Variant.Filled" Color="Color.Primary">
-    @ButtonText
+    @ViewModel.Button.Text
 </MudButton>
 
 @code {
-    private string ButtonText { get; set; } = "Carregando...";
-
-    protected override async Task OnInitializedAsync()
-    {
-        ButtonText = await ButtonService.GetButtonTextAsync();
-    }
+    [Parameter]
+    public ButtonViewModel ViewModel { get; set; }
 
     private void HandleClick()
     {
         Console.WriteLine("Botão clicado!");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        ViewModel ??= new ButtonViewModel(ButtonService);
+
+        await ViewModel.LoadButtonText();
+        StateHasChanged();
     }
 }

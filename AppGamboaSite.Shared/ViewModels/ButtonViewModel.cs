@@ -1,19 +1,36 @@
-﻿using AppGamboaSite.Shared.Models;
+﻿
+using AppGamboaSite.Shared.Models;
 using AppGamboaSite.Shared.Services;
-using Microsoft.AspNetCore.Components;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
-namespace AppGamboa.Shared.ViewModels
+namespace AppGamboaSite.ViewModels
 {
-    public class ButtonViewModel : ComponentBase
+    public class ButtonViewModel : INotifyPropertyChanged
     {
-        [Inject]
-        public IButtonService ButtonService { get; set; }
+        private readonly IButtonService _buttonService;
 
-        public ButtonModel ButtonData { get; set; }
+        public ButtonModel Button { get; private set; }
 
-        protected override void OnInitialized()
+        public ButtonViewModel(IButtonService buttonService)
         {
-            ButtonData = ButtonService.GetButtonData();
+            _buttonService = buttonService;
+            Button = new ButtonModel { Text = "Carregando..." };
+        }
+
+        public async Task LoadButtonText()
+        {
+            var text = await _buttonService.GetButtonTextAsync();
+            Button.Text = text;
+            OnPropertyChanged(nameof(Button));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
