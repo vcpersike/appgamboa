@@ -11,6 +11,7 @@ builder.Services.AddRazorComponents()
 
 // Add device-specific services used by the AppGamboaSite.Shared project
 builder.Services.AddSingleton<IFormFactor, FormFactor>();
+builder.Services.AddSingleton<IButtonService, ButtonService>();
 builder.Services.AddMudServices();
 
 var app = builder.Build();

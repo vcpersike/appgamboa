@@ -15,4 +15,12 @@
     <PackageReference Include="MudBlazor" Version="8.6.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\Base\" />
+    <Folder Include="ViewModels\Pages\" />
+    <Folder Include="Views\Component\Molecules\" />
+    <Folder Include="Views\Component\Organisms\" />
+    <Folder Include="Views\Templates\" />
+  </ItemGroup>
+
 </Project>
