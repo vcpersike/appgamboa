@@ -10,5 +10,6 @@ namespace AppGamboaSite.Shared.Services
     public interface IButtonService
     {
         ButtonModel GetButtonData();
+        Task<string> GetButtonTextAsync();
     }
 }

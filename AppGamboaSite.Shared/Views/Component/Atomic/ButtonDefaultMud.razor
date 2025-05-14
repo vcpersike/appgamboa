@@ -1,0 +1,19 @@
+﻿@inject IButtonService ButtonService
+
+<MudButton @onclick="HandleClick" Variant="Variant.Filled" Color="Color.Primary">
+    @ButtonText
+</MudButton>
+
+@code {
+    private string ButtonText { get; set; } = "Carregando...";
+
+    protected override async Task OnInitializedAsync()
+    {
+        ButtonText = await ButtonService.GetButtonTextAsync();
+    }
+
+    private void HandleClick()
+    {
+        Console.WriteLine("Botão clicado!");
+    }
+}

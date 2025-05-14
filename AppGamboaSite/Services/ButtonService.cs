@@ -18,5 +18,12 @@ namespace AppGamboaSite.Services
                 CssClass = "btn-primary"
             };
         }
+
+        public async Task<string> GetButtonTextAsync()
+        {
+            // Simulação de chamada assíncrona (pode ser API, Database, etc.)
+            await Task.Delay(500);
+            return "Texto do Botão - MudBlazor";
+        }
     }
 }
