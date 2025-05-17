@@ -1,0 +1,15 @@
+﻿<MudListItem T="MenuItemModel" @onclick="() => OnClick.InvokeAsync()">
+    <MudItem Icon="@Icon" />
+    <MudText>@Text</MudText>
+</MudListItem>
+
+@code {
+    [Parameter]
+    public string Icon { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+}

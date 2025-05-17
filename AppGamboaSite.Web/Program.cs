@@ -1,4 +1,5 @@
 using AppGamboaSite.Shared.Services;
+using AppGamboaSite.Shared.ViewModels;
 using AppGamboaSite.ViewModels;
 using AppGamboaSite.Web.Components;
 using AppGamboaSite.Web.Services;
@@ -13,6 +14,8 @@ builder.Services.AddRazorComponents()
 // Add device-specific services used by the AppGamboaSite.Shared project
 builder.Services.AddSingleton<IFormFactor, FormFactor>();
 builder.Services.AddSingleton<IButtonService, ButtonService>();
+builder.Services.AddSingleton<IMenuService, MenuService>();
+builder.Services.AddSingleton<SideMenuViewModel>();
 builder.Services.AddTransient<ButtonViewModel>();
 builder.Services.AddMudServices();
 
