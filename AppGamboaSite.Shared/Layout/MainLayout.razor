@@ -17,7 +17,6 @@
             Gamboa Solutions
         </div>
     </MudAppBar>
-    <MudSwitch @bind-Value="_overlayAutoClose" Label="Overlay Autoclose" Color="Color.Secondary" />
     <MudDrawer @bind-Open="@_drawerOpen"
         Elevation="1"
                Variant="@DrawerVariant.Temporary" OverlayAutoClose="@_overlayAutoClose"
@@ -30,8 +29,8 @@
         </MudNavMenu>
         
     </MudDrawer>
-    <MudMainContent Class="pt-8 px-8">
-        <MudContainer Class="mt-2">
+    <MudMainContent Class="pt-16 px-16">
+        <MudContainer Class="mt-4">
         @Body
         </MudContainer>
     </MudMainContent>
@@ -44,7 +43,7 @@
     private bool _overlayAutoClose = true;
     private List<BreadcrumbItem> _items =
    [
-       new("Home", href: "/",  icon: Icons.Material.Filled.Home),
+        new("Home", href: "/",  icon: Icons.Material.Filled.Home),
         new("Counter", href: "/counter", icon: Icons.Material.Filled.VideoLibrary),
         new("Weather", href: "/weather", icon: Icons.Material.Filled.Create)
    ];
