@@ -4,11 +4,11 @@
 @inject IFormFactor FormFactor
 
 <PageTitle>Home</PageTitle>
-
+<MudIcon Icon="@Icons.Material.Filled.ChevronLeft" />
+<MudIcon Icon="@Icons.Material.Filled.ChevronRight" />
+<MudIcon Icon="@Icons.Material.Filled.Home" />
+<MudIcon Icon="@Icons.Material.Filled.Settings" />
 <ButtonDefaultMud/>
-<h1>Teste Eu tentei</h1>
-rs
-teste teste <em>@factor</em> using <em>@platform</em>.
 
 @code {
     private string factor => FormFactor.GetFormFactor();

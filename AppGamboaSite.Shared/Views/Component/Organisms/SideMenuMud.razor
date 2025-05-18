@@ -1,47 +1,24 @@
-﻿@using AppGamboaSite.Shared.ViewModels
-<div class="menu-wrapper">
-    <MudFab Icon="@ToggleIcon" @onclick="ToggleMenu" Color="Color.Primary" Class="toggle-button" />
-    <MudDrawer Open="@IsOpen" ClipMode="DrawerClipMode.Always" Elevation="1">
-        <MudList T="MenuItemModel">
-            @foreach (var item in MenuItems)
-            {
-                <MenuItemMud Icon="@item.Icon" Text="@item.Text" OnClick="() => NavigateTo(item.Route)" />
-            }
-        </MudList>
-    </MudDrawer>
-</div>
+﻿<MudPaper Height="200px" Style="overflow:hidden; position:relative;">
+    <MudDrawerContainer Class="mud-height-full">
+        <MudDrawer @bind-Open="@_open" Fixed="false" Elevation="1" Variant="@DrawerVariant.Mini" OpenMiniOnHover="true">
+            <MudNavMenu>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Store">Store</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.LibraryBooks">Library</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Group">Community</MudNavLink>
+            </MudNavMenu>
+        </MudDrawer>
+        <div class="d-flex justify-center align-center mud-height-full">
+            <MudButton OnClick="@ToggleDrawer" Color="Color.Primary">Toggle</MudButton>
+        </div>
+    </MudDrawerContainer>
+</MudPaper>
+@code
+{
+    private bool _open = false;
 
-@code {
-    [Inject]
-    public SideMenuViewModel ViewModel { get; set; }
-
-    [Inject]
-    public IMenuService MenuService { get; set; }
-
-    [Inject]
-    public NavigationManager Navigation { get; set; }
-
-    private bool IsOpen { get; set; } = true;
-    private string ToggleIcon => IsOpen ? "chevron_left" : "chevron_right";
-
-    private IEnumerable<MenuItemModel> MenuItems => ViewModel.MenuItems;
-
-    protected override void OnInitialized()
+    private void ToggleDrawer()
     {
-        ViewModel.MenuItems = MenuService.GetMenuItems();
-    }
-
-    private void NavigateTo(string route)
-    {
-        if (!string.IsNullOrEmpty(route))
-        {
-            Navigation.NavigateTo(route);
-        }
-    }
-
-    private void ToggleMenu()
-    {
-        IsOpen = !IsOpen;
+        _open = !_open;
     }
 }
 

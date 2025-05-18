@@ -1,63 +1,56 @@
 ﻿@page "/weather"
 
-<PageTitle>Weather</PageTitle>
-
-<h1>Weather</h1>
-
-<p>This component demonstrates showing data.</p>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
+<MudPaper Height="200px" Class="mud-theme-primary" Style="overflow:hidden; position:relative;">
+    <MudDrawerContainer Class="mud-height-full">
+        <MudDrawer @bind-Open="@_openLeft" Anchor="Anchor.Left" Elevation="0" Variant="@DrawerVariant.Persistent">
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h6">My App</MudText>
+            </MudDrawerHeader>
+            <MudNavMenu>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Store">Store</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.LocalLibrary">Library</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Forum">Community</MudNavLink>
+            </MudNavMenu>
+        </MudDrawer>
+        <MudDrawer @bind-Open="@_openRight" Fixed="false" Anchor="Anchor.Right" Elevation="0" Variant="@DrawerVariant.Persistent">
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h6">Settings</MudText>
+            </MudDrawerHeader>
+            <MudNavMenu>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.AccountBox">Profile</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.ShoppingCart">Orders</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.History">Order History</MudNavLink>
+            </MudNavMenu>
+        </MudDrawer>
+        <div class="d-flex justify-center align-center mud-height-full">
+            @if (Rtl)
             {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
+                <MudButton Color="Color.Inherit" OnClick="@ToggleRightDrawer" StartIcon="@Icons.Material.Filled.East" Class="mx-2">Toggle right</MudButton>
+                <MudButton Color="Color.Inherit" OnClick="@ToggleLeftDrawer" EndIcon="@Icons.Material.Filled.West" Class="mx-2">Toggle left</MudButton>
             }
-        </tbody>
-    </table>
-}
+            else
+            {
+                <MudButton Color="Color.Inherit" OnClick="@ToggleLeftDrawer" StartIcon="@Icons.Material.Filled.West" Class="mx-2">Toggle left</MudButton>
+                <MudButton Color="Color.Inherit" OnClick="@ToggleRightDrawer" EndIcon="@Icons.Material.Filled.East" Class="mx-2">Toggle right</MudButton>
+            }
+        </div>
+    </MudDrawerContainer>
+</MudPaper>
+@code
+{
+    private bool _openLeft = false;
+    private bool _openRight = false;
 
-@code {
-    private WeatherForecast[]? forecasts;
+    [CascadingParameter]
+    public bool Rtl { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    private void ToggleLeftDrawer()
     {
-        // Simulate asynchronous loading to demonstrate a loading indicator
-        await Task.Delay(500);
-
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
+        _openLeft = !_openLeft;
     }
 
-    private class WeatherForecast
+    private void ToggleRightDrawer()
     {
-        public DateOnly Date { get; set; }
-        public int TemperatureC { get; set; }
-        public string? Summary { get; set; }
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        _openRight = !_openRight;
     }
 }
