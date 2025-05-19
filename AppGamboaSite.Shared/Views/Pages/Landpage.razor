@@ -1,0 +1,202 @@
+﻿@page "/"
+@inherits LayoutComponentBase
+@inject IJSRuntime JS
+
+<MudContainer Class="pt-16 px-16">
+    <MudGrid>
+        <MudItem xs="12">
+            <MudText Typo="Typo.h2" Align="Align.Center">Gamboa Solutions - Tecnologia e Inovação</MudText>
+        </MudItem>
+
+        <MudItem xs="12">
+            <section id="sobre">
+                <MudPaper Class="section-paper">
+                    <MudText Typo="Typo.h4">Sobre Nós</MudText>
+                    <p>
+                        Somos uma empresa do regime Simples Nacional, mas com uma visão ampla e inovadora no desenvolvimento tecnológico. Com vasta experiência em projetos complexos, entregamos soluções de alta qualidade para web, desktop e mobile, sempre focados em eficiência e escalabilidade.
+                    </p>
+                    <p>
+                        Atuamos com as melhores práticas do mercado, como DDD (Domain-Driven Design), SOLID e Clean Architecture, garantindo a sustentabilidade e a evolução dos projetos ao longo do tempo.
+                    </p>
+                </MudPaper>
+            </section>
+
+            <section id="servicos">
+                <MudPaper Class="section-paper">
+                    <MudText Typo="Typo.h4">Serviços</MudText>
+
+                    <MudGrid Class="mt-4" GutterSpacing="2">
+                        <MudItem xs="12" sm="6" md="4">
+                            <MudCard Class="bg-dark text-white">
+                                <MudCardMedia Image="images/web-development.jpg" Height="200" />
+                                <MudCardContent>
+                                    <MudText Typo="Typo.h5">Desenvolvimento Web</MudText>
+                                    <MudText Typo="Typo.body2">Aplicações modernas para web utilizando Angular, React e Blazor.</MudText>
+                                </MudCardContent>
+                                <MudCardActions>
+                                    <MudButton Variant="Variant.Text" Color="Color.Warning">Saiba Mais</MudButton>
+                                </MudCardActions>
+                            </MudCard>
+                        </MudItem>
+
+                        <MudItem xs="12" sm="6" md="4">
+                            <MudCard Class="bg-dark text-white">
+                                <MudCardMedia Image="images/mobile-development.jpg" Height="200" />
+                                <MudCardContent>
+                                    <MudText Typo="Typo.h5">Aplicativos Mobile</MudText>
+                                    <MudText Typo="Typo.body2">Desenvolvimento de apps nativos e híbridos para Android e iOS.</MudText>
+                                </MudCardContent>
+                                <MudCardActions>
+                                    <MudButton Variant="Variant.Text" Color="Color.Warning">Saiba Mais</MudButton>
+                                </MudCardActions>
+                            </MudCard>
+                        </MudItem>
+
+                        <MudItem xs="12" sm="6" md="4">
+                            <MudCard Class="bg-dark text-white">
+                                <MudCardMedia Image="images/rpa.jpg" Height="200" />
+                                <MudCardContent>
+                                    <MudText Typo="Typo.h5">Automação RPA</MudText>
+                                    <MudText Typo="Typo.body2">Automatização de processos repetitivos com robôs de software.</MudText>
+                                </MudCardContent>
+                                <MudCardActions>
+                                    <MudButton Variant="Variant.Text" Color="Color.Warning">Saiba Mais</MudButton>
+                                </MudCardActions>
+                            </MudCard>
+                        </MudItem>
+
+                    </MudGrid>
+                </MudPaper>
+            </section>
+
+            <section id="habilidades">
+                <MudPaper Class="section-paper">
+                    <MudText Typo="Typo.h4">Habilidades</MudText>
+
+                    <MudCarousel Class="mud-width-full" Style="height:400px;" TData="object" AutoCycle="true">
+
+                        <MudCarouselItem>
+                            <MudCard Class="bg-dark text-white">
+                                <MudCardHeader>
+                                    <CardHeaderAvatar>
+                                        <MudAvatar Color="Color.Warning">W</MudAvatar>
+                                    </CardHeaderAvatar>
+                                    <CardHeaderContent>
+                                        <MudText Typo="Typo.body1">Desenvolvimento Web</MudText>
+                                        <MudText Typo="Typo.body2">Aplicações modernas para web utilizando Angular, React e Blazor.</MudText>
+                                    </CardHeaderContent>
+                                </MudCardHeader>
+                                <MudCardMedia Image="images/web-development.jpg" Height="250" />
+                                <MudCardContent>
+                                    <MudText Typo="Typo.body2">Desenvolvimento focado em performance e escalabilidade.</MudText>
+                                </MudCardContent>
+                                <MudCardActions>
+                                    <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+                                    <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+                                </MudCardActions>
+                            </MudCard>
+                        </MudCarouselItem>
+
+                        <MudCarouselItem>
+                            <MudCard Class="bg-dark text-white">
+                                <MudCardHeader>
+                                    <CardHeaderAvatar>
+                                        <MudAvatar Color="Color.Warning">M</MudAvatar>
+                                    </CardHeaderAvatar>
+                                    <CardHeaderContent>
+                                        <MudText Typo="Typo.body1">Aplicativos Mobile</MudText>
+                                        <MudText Typo="Typo.body2">Desenvolvimento nativo e híbrido para Android e iOS.</MudText>
+                                    </CardHeaderContent>
+                                </MudCardHeader>
+                                <MudCardMedia Image="images/mobile-development.jpg" Height="250" />
+                                <MudCardContent>
+                                    <MudText Typo="Typo.body2">Aplicações otimizadas para dispositivos móveis.</MudText>
+                                </MudCardContent>
+                                <MudCardActions>
+                                    <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+                                    <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+                                </MudCardActions>
+                            </MudCard>
+                        </MudCarouselItem>
+
+                        <MudCarouselItem>
+                            <MudCard Class="bg-dark text-white">
+                                <MudCardHeader>
+                                    <CardHeaderAvatar>
+                                        <MudAvatar Color="Color.Warning">R</MudAvatar>
+                                    </CardHeaderAvatar>
+                                    <CardHeaderContent>
+                                        <MudText Typo="Typo.body1">Automação RPA</MudText>
+                                        <MudText Typo="Typo.body2">Processos automatizados para ganho de produtividade.</MudText>
+                                    </CardHeaderContent>
+                                </MudCardHeader>
+                                <MudCardMedia Image="images/rpa.jpg" Height="250" />
+                                <MudCardContent>
+                                    <MudText Typo="Typo.body2">Elimine tarefas manuais e otimize processos.</MudText>
+                                </MudCardContent>
+                                <MudCardActions>
+                                    <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" />
+                                    <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+                                </MudCardActions>
+                            </MudCard>
+                        </MudCarouselItem>
+
+                    </MudCarousel>
+                </MudPaper>
+            </section>
+
+            <section id="contato">
+                <MudPaper Class="section-paper">
+                    <MudText Typo="Typo.h4">Contato</MudText>
+
+                    <MudCard>
+                        <MudForm Model="@model" @ref="form" >
+                            <MudCardContent>
+                                <MudTextField Label="Nome" Variant="Variant.Filled" FullWidth="true" @bind-Value="model.Name" />
+                                <MudTextField Label="Email" Variant="Variant.Filled" FullWidth="true" @bind-Value="model.Email" />
+                                <MudTextField Label="Telefone" Variant="Variant.Filled" FullWidth="true" @bind-Value="model.Phone" />
+                            </MudCardContent>
+                            <MudCardActions>
+                                <MudButton Variant="Variant.Filled" Color="Color.Warning" OnClick="Submit">Enviar Mensagem</MudButton>
+                            </MudCardActions>
+                        </MudForm>
+                    </MudCard>
+                </MudPaper>
+            </section>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+<MudContainer Class="mt-8">
+    <MudDivider />
+    <MudText Typo="Typo.body2" Align="Align.Center" Class="pt-4 pb-4">
+        © 2025 Victor Persike - Todos os direitos reservados.
+    </MudText>
+</MudContainer>
+
+@code {
+    private MudForm form;
+    private ContatoModel model = new ContatoModel();
+
+    private async Task Submit()
+    {
+        await form.Validate();
+        if (form.IsValid)
+        {
+            Console.WriteLine($"Nome: {model.Name}");
+            Console.WriteLine($"Email: {model.Email}");
+            Console.WriteLine($"Telefone: {model.Phone}");
+        }
+    }
+
+    public class ContatoModel
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+    }
+    public async Task ScrollToElement(string elementId)
+    {
+        await JS.InvokeVoidAsync("scrollToElement", elementId);
+    }
+}

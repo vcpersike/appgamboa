@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\Base\" />
-    <Folder Include="ViewModels\Pages\" />
     <Folder Include="Views\Templates\" />
   </ItemGroup>
 
