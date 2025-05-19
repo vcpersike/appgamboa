@@ -19,15 +19,14 @@
     </MudAppBar>
     <MudDrawer @bind-Open="@_drawerOpen"
         Elevation="1"
-               Variant="@DrawerVariant.Temporary" OverlayAutoClose="@_overlayAutoClose"
+        Variant="@DrawerVariant.Temporary" OverlayAutoClose="@_overlayAutoClose"
         Color="Color.Dark"
-               Anchor="@_anchor">
+        Anchor="@_anchor">
         <MudNavMenu Margin="Margin.Dense">
             <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard" IconColor="Color.Secondary">Counter</MudNavLink>
             <MudNavLink Href="/" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.LocalLibrary" IconColor="Color.Secondary">Home</MudNavLink>
             <MudNavLink Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People" IconColor="Color.Secondary">Weather</MudNavLink>
-        </MudNavMenu>
-        
+        </MudNavMenu>     
     </MudDrawer>
     <MudMainContent Class="pt-16 px-16">
         <MudContainer Class="mt-4">
