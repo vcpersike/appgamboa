@@ -2,8 +2,7 @@
 
 <MudContainer MaxWidth="MaxWidth.Medium" Class="pa-4">
     <MudPaper Elevation="3" Class="pa-6">
-       
-        
+               
         <MudText Typo="Typo.h3" Align="Align.Center" Class="mb-4">Política de Privacidade</MudText>
         <MudText Typo="Typo.subtitle1" Align="Align.Center" Class="mb-6"><strong>Última atualização:</strong> 18 de maio de 2025</MudText>
 
@@ -115,3 +114,12 @@
         </MudText>
     </MudPaper>
 </MudContainer>
+
+@code{
+    public class MenuItemModel
+    {
+        public string Title { get; set; }
+        public string Icon { get; set; }
+        public string Url { get; set; }
+    }
+}

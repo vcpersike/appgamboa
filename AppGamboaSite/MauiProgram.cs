@@ -1,6 +1,4 @@
-﻿using AppGamboaSite.Services;
-using AppGamboaSite.Shared.Services;
-using AppGamboaSite.ViewModels;
+﻿
 using Microsoft.Extensions.Logging;
 using MudBlazor.Services;
 
@@ -19,9 +17,7 @@ namespace AppGamboaSite
                 });
 
             // Add device-specific services used by the AppGamboaSite.Shared project
-            builder.Services.AddSingleton<IFormFactor, FormFactor>();
-            builder.Services.AddSingleton<IButtonService, ButtonService>();
-            builder.Services.AddTransient<ButtonViewModel>();
+            
             builder.Services.AddMudServices();
 
             builder.Services.AddMauiBlazorWebView();

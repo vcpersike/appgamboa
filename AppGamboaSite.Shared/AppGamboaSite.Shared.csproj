@@ -16,7 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\Base\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Views\Component\" />
+    <Folder Include="Views\MudComponent\" />
     <Folder Include="Views\Templates\" />
   </ItemGroup>
 
