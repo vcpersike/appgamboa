@@ -1,0 +1,18 @@
+﻿<section id="contato">
+    <MudPaper Class="section-paper">
+        <MudText Typo="Typo.h4">Contato</MudText>
+
+        <MudCard>
+            <MudForm Model="@model" @ref="form">
+                <MudCardContent>
+                    <MudTextField Label="Nome" Variant="Variant.Filled" FullWidth="true" @bind-Value="model.Name" />
+                    <MudTextField Label="Email" Variant="Variant.Filled" FullWidth="true" @bind-Value="model.Email" />
+                    <MudTextField Label="Telefone" Variant="Variant.Filled" FullWidth="true" @bind-Value="model.Phone" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Filled" Color="Color.Warning" OnClick="Submit">Enviar Mensagem</MudButton>
+                </MudCardActions>
+            </MudForm>
+        </MudCard>
+    </MudPaper>
+</section>
