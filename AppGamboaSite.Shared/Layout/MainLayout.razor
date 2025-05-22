@@ -25,6 +25,8 @@
             <MudNavLink Href="#sobre" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Info" IconColor="Color.Secondary">Sobre</MudNavLink>
             <MudNavLink Href="#servicos" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Build" IconColor="Color.Secondary">Serviços</MudNavLink>
             <MudNavLink Href="#contato" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Email" IconColor="Color.Secondary">Contato</MudNavLink>
+            <MudNavLink Href="/image-remover" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Image" IconColor="Color.Secondary">Image</MudNavLink>
+
         </MudNavMenu>
     </MudDrawer>
     <MudMainContent Class="pt-16 px-16">
@@ -32,23 +34,3 @@
     </MudMainContent>
 </MudLayout>
 
-@code
-{
-    private bool _drawerOpen = false;
-    private Anchor _anchor;
-    private bool _overlayAutoClose = true;
-
-    private List<BreadcrumbItem> _items = new()
-    {
-        new("Sobre", href: "#sobre", icon: Icons.Material.Filled.Info),
-        new("Serviços", href: "#servicos", icon: Icons.Material.Filled.Build),
-        new("Contato", href: "#contato", icon: Icons.Material.Filled.Email)
-    };
-
-    private void ToggleDrawer(Anchor anchor)
-    {
-        _anchor = anchor;
-        _drawerOpen = !_drawerOpen;
-        StateHasChanged();
-    }
-}

@@ -1,0 +1,104 @@
+﻿@page "/image-remover"
+@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+@implements IAsyncDisposable
+@using Microsoft.JSInterop
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-4">
+    <MudPaper Elevation="3" Class="pa-4">
+        <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true">Ferramenta de Remoção de Fundo</MudText>
+        <MudText Align="Align.Center" Class="mb-6">Carregue a sua imagem e remova a cor de fundo desejada.</MudText>
+
+        <MudFileUpload T="IBrowserFile" Accept="image/*" FilesChanged="HandleFileSelected" Class="mb-4" MaximumFileCount="1">
+            <ActivatorContent>
+                <MudButton HtmlTag="label"
+                           Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Filled.CloudUpload"
+                           >
+                    Carregar Imagem
+                </MudButton>
+            </ActivatorContent>
+        </MudFileUpload>
+
+        @if (!string.IsNullOrEmpty(fileName))
+        {
+            <MudText Align="Align.Center" Class="mb-4">Arquivo: @fileName</MudText>
+        }
+
+        @if (!string.IsNullOrEmpty(originalImageDataUrl))
+        {
+            <MudGrid Spacing="3" Justify="Justify.Center">
+                <MudItem xs="12" sm="6">
+                    <MudPaper Outlined="true" Class="pa-2">
+                        <MudText Typo="Typo.subtitle1" GutterBottom="true">Tolerância (@tolerance)</MudText>
+                        <MudSlider @bind-Value="tolerance" Min="0" Max="255" Step="1" Color="Color.Primary" />
+                        <MudText Typo="Typo.caption">Ajuste para incluir tons semelhantes. Valores mais altos removem mais cores.</MudText>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12" sm="6">
+                    <MudPaper Outlined="true" Class="pa-2">
+                        <MudText Typo="Typo.subtitle1" GutterBottom="true">Cor a ser Removida</MudText>
+                        <div class="d-flex align-center">
+                            <MudColorPicker @bind-Text="colorToReplaceHex" 
+                                            PickerVariant="PickerVariant.Inline" 
+                                            DisableToolbar="true" 
+                                            DisableAlpha="true"
+                                            Class="mr-2"
+                                            Style="width: auto;"/>
+                            <div class="color-preview-mud" style="background-color: @colorToReplaceHex;"></div>
+                        </div>
+                         <MudButton OnClick="ToggleColorPickingMode" 
+                                   Variant="Variant.Text" 
+                                   Color="@(isPickingColor ? Color.Error : Color.Secondary)" 
+                                   Size="Size.Small"
+                                   Class="mt-2">
+                            @(isPickingColor ? "Cancelar Seleção" : "Selecionar Cor da Imagem")
+                        </MudButton>
+                        <MudText Typo="Typo.caption">Clique no botão acima e depois na imagem para selecionar a cor.</MudText>
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+
+            @if (isLoading) // Mostrar loading sempre que isLoading for true
+            {
+                <div class="mt-4">
+                    <MudProgressCircular Color="Color.Primary" Indeterminate="true" Class="mx-auto my-2 d-block" />
+                    <MudText Align="Align.Center">@loadingMessage</MudText>
+                </div>
+            }
+
+            <div class="preview-container-mud @(isPickingColor ? "cursor-crosshair-mud" : "") mt-4" @onclick="HandleCanvasClick">
+                <canvas id="imageCanvasBlazorMud" class="image-canvas-mud"></canvas>
+            </div>
+            <MudText Align="Align.Center" Typo="Typo.caption" Class="mt-2">
+                @if (isPickingColor) {
+                    <span>Clique na imagem para selecionar a cor a ser removida.</span>
+                } else if (!string.IsNullOrEmpty(originalImageDataUrl) && !isLoading ) {
+                    <span>Pré-visualização da imagem.</span>
+                }
+            </MudText>
+
+            <div class="mt-6 d-flex justify-center">
+                <MudButton OnClick="ProcessImage" 
+                           Variant="Variant.Filled" 
+                           Color="Color.Success" 
+                           Disabled="@isLoading" 
+                           Class="mr-2">
+                    Remover Fundo
+                </MudButton>
+                @if (!string.IsNullOrEmpty(processedImageDataUrl))
+                {
+                    <MudButton Href="@processedImageDataUrl"
+                               Download="imagem_sem_fundo.png"
+                               Variant="Variant.Outlined"
+                               Color="Color.Primary">
+                        Baixar Imagem
+                    </MudButton>
+                }
+            </div>
+        }
+    </MudPaper>
+</MudContainer>
+
+```
