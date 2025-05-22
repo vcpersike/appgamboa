@@ -1,7 +1,6 @@
 ﻿@page "/image-remover"
 @inject IJSRuntime JSRuntime
 @inject ISnackbar Snackbar
-@implements IAsyncDisposable
 @using Microsoft.JSInterop
 
 <MudContainer MaxWidth="MaxWidth.Medium" Class="mt-4">
@@ -36,7 +35,7 @@
                     </MudPaper>
                 </MudItem>
                 <MudItem xs="12" sm="6">
-                    <MudPaper Outlined="true" Class="pa-2">
+                    <MudPaper Outlined="true" Class="pa-2 h-100">
                         <MudText Typo="Typo.subtitle1" GutterBottom="true">Cor a ser Removida</MudText>
                         <div class="d-flex align-center">
                             <MudColorPicker @bind-Text="colorToReplaceHex" 
@@ -45,15 +44,21 @@
                                             DisableAlpha="true"
                                             Class="mr-2"
                                             Style="width: auto;"/>
-                            <div class="color-preview-mud" style="background-color: @colorToReplaceHex;"></div>
                         </div>
-                        <MudButton OnClick="ToggleColorPickingMode" 
+                    </MudPaper>  
+                </MudItem>
+                <MudItem xs="12" sm="12">
+                    <MudPaper Outlined="true" Class="pa-2 text-center ">
+                        <div class="d-flex align-center justify-content-center">
+                            <MudButton OnClick="ToggleColorPickingMode" 
                                    Variant="Variant.Text" 
                                    Color="@(isPickingColor ? Color.Error : Color.Secondary)" 
                                    Size="Size.Small"
                                    Class="mt-2">
-                            @(isPickingColor ? "Cancelar Seleção" : "Selecionar Cor da Imagem")
-                        </MudButton>
+                                   @(isPickingColor ? "Cancelar Seleção" : "Selecionar Cor da Imagem")
+                            </MudButton>
+                         <div class="color-preview-mud" style="background-color: @colorToReplaceHex;"></div>
+                        </div>
                         <MudText Typo="Typo.caption">Clique no botão acima e depois na imagem para selecionar a cor.</MudText>
                     </MudPaper>
                 </MudItem>
@@ -89,57 +94,15 @@
     </MudButton>
     
     @if (hasProcessingStarted && string.IsNullOrEmpty(processedImageDataUrl))
-    {
-        <MudButton OnClick="CheckResult"
-                   Variant="Variant.Outlined"
-                   Color="Color.Primary"
-                   StartIcon="@Icons.Material.Filled.Refresh"
-                   Class="mr-2">
-            Verificar Resultado
-        </MudButton>
-        
-        <MudButton OnClick="ForceRetrieveResult"
-                   Variant="Variant.Filled"
-                   Color="Color.Warning"
-                   StartIcon="@Icons.Material.Filled.GetApp"
-                   Class="mr-2">
-            Forçar Recuperação
-        </MudButton>
-    }
-    
-    @* DEBUG: Sempre mostrar status *@
-    <div class="w-100 mt-2">
-        <MudText Typo="Typo.caption" Align="Align.Center">
-            DEBUG - hasProcessingStarted: @hasProcessingStarted | 
-            processedImageDataUrl: @(string.IsNullOrEmpty(processedImageDataUrl) ? "VAZIO" : "TEM DADOS")
-        </MudText>
-    </div>
-    
-    @if (!string.IsNullOrEmpty(processedImageDataUrl))
-    {
-        <MudButton OnClick="DownloadImage"
-                   Variant="Variant.Filled"
-                   Color="Color.Primary"
-                   StartIcon="@Icons.Material.Filled.Download"
-                   Class="mr-2">
-            Baixar Imagem
-        </MudButton>
-        
-        <MudButton OnClick="DownloadImageDirectly"
-                   Variant="Variant.Outlined"
-                   Color="Color.Secondary"
-                   StartIcon="@Icons.Material.Filled.SaveAs">
-            Download Direto
-        </MudButton>
-    }
-    
-    @* Botão de emergência - sempre visível *@
-    <MudButton OnClick="EmergencyDownload"
+    { 
+        <MudButton OnClick="Download"
                Variant="Variant.Text"
                Color="Color.Error"
                Size="Size.Small">
-        Download Emergência
-    </MudButton>
+        Download
+        </MudButton>
+            
+    }
 </div>
         }
     </MudPaper>
