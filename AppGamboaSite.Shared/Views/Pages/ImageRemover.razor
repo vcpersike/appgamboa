@@ -96,9 +96,11 @@
     @if (hasProcessingStarted && string.IsNullOrEmpty(processedImageDataUrl))
     { 
         <MudButton OnClick="Download"
-               Variant="Variant.Text"
-               Color="Color.Error"
-               Size="Size.Small">
+               Variant="Variant.Outlined"
+               Color="Color.Surface"
+               Class="mr-2"
+               StartIcon="@Icons.Material.Filled.ArtTrack"
+               >
         Download
         </MudButton>
             
