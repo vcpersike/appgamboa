@@ -14,8 +14,7 @@
                 <MudButton HtmlTag="label"
                            Variant="Variant.Filled"
                            Color="Color.Primary"
-                           StartIcon="@Icons.Material.Filled.CloudUpload"
-                           >
+                           StartIcon="@Icons.Material.Filled.CloudUpload">
                     Carregar Imagem
                 </MudButton>
             </ActivatorContent>
@@ -48,7 +47,7 @@
                                             Style="width: auto;"/>
                             <div class="color-preview-mud" style="background-color: @colorToReplaceHex;"></div>
                         </div>
-                         <MudButton OnClick="ToggleColorPickingMode" 
+                        <MudButton OnClick="ToggleColorPickingMode" 
                                    Variant="Variant.Text" 
                                    Color="@(isPickingColor ? Color.Error : Color.Secondary)" 
                                    Size="Size.Small"
@@ -60,7 +59,7 @@
                 </MudItem>
             </MudGrid>
 
-            @if (isLoading) // Mostrar loading sempre que isLoading for true
+            @if (isLoading)
             {
                 <div class="mt-4">
                     <MudProgressCircular Color="Color.Primary" Indeterminate="true" Class="mx-auto my-2 d-block" />
@@ -79,26 +78,70 @@
                 }
             </MudText>
 
-            <div class="mt-6 d-flex justify-center">
-                <MudButton OnClick="ProcessImage" 
-                           Variant="Variant.Filled" 
-                           Color="Color.Success" 
-                           Disabled="@isLoading" 
-                           Class="mr-2">
-                    Remover Fundo
-                </MudButton>
-                @if (!string.IsNullOrEmpty(processedImageDataUrl))
-                {
-                    <MudButton Href="@processedImageDataUrl"
-                               Download="imagem_sem_fundo.png"
-                               Variant="Variant.Outlined"
-                               Color="Color.Primary">
-                        Baixar Imagem
-                    </MudButton>
-                }
-            </div>
+         <div class="mt-6 d-flex justify-center flex-wrap gap-2">
+    <MudButton OnClick="ProcessImage" 
+               Variant="Variant.Filled" 
+               Color="Color.Success" 
+               Disabled="@isLoading" 
+               StartIcon="@Icons.Material.Filled.AutoFixHigh"
+               Class="mr-2">
+        Remover Fundo
+    </MudButton>
+    
+    @if (hasProcessingStarted && string.IsNullOrEmpty(processedImageDataUrl))
+    {
+        <MudButton OnClick="CheckResult"
+                   Variant="Variant.Outlined"
+                   Color="Color.Primary"
+                   StartIcon="@Icons.Material.Filled.Refresh"
+                   Class="mr-2">
+            Verificar Resultado
+        </MudButton>
+        
+        <MudButton OnClick="ForceRetrieveResult"
+                   Variant="Variant.Filled"
+                   Color="Color.Warning"
+                   StartIcon="@Icons.Material.Filled.GetApp"
+                   Class="mr-2">
+            Forçar Recuperação
+        </MudButton>
+    }
+    
+    @* DEBUG: Sempre mostrar status *@
+    <div class="w-100 mt-2">
+        <MudText Typo="Typo.caption" Align="Align.Center">
+            DEBUG - hasProcessingStarted: @hasProcessingStarted | 
+            processedImageDataUrl: @(string.IsNullOrEmpty(processedImageDataUrl) ? "VAZIO" : "TEM DADOS")
+        </MudText>
+    </div>
+    
+    @if (!string.IsNullOrEmpty(processedImageDataUrl))
+    {
+        <MudButton OnClick="DownloadImage"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   StartIcon="@Icons.Material.Filled.Download"
+                   Class="mr-2">
+            Baixar Imagem
+        </MudButton>
+        
+        <MudButton OnClick="DownloadImageDirectly"
+                   Variant="Variant.Outlined"
+                   Color="Color.Secondary"
+                   StartIcon="@Icons.Material.Filled.SaveAs">
+            Download Direto
+        </MudButton>
+    }
+    
+    @* Botão de emergência - sempre visível *@
+    <MudButton OnClick="EmergencyDownload"
+               Variant="Variant.Text"
+               Color="Color.Error"
+               Size="Size.Small">
+        Download Emergência
+    </MudButton>
+</div>
         }
     </MudPaper>
 </MudContainer>
 
-```
