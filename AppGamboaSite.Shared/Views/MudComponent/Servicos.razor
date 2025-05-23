@@ -1,5 +1,5 @@
 ﻿<MudContainer MaxWidth="MaxWidth.Large" Class="my-16">
-    <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true" Class="mb-8">Основные задачи</MudText>
+    <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true" Class="mb-8">Experiências</MudText>
     <MudGrid Spacing="4" Justify="Justify.Center">
         @foreach (var task in Tasks)
         {
@@ -21,6 +21,8 @@
     public List<TaskItem> Tasks { get; set; } = new List<TaskItem>
     {
         new TaskItem { Number = 1, Title = "Solução", Description = "Краткое описание первой основной задачи, которая должна быть выполнена."},
-        new TaskItem { Number = 2, Title = "Arquitetura", Description = "Краткое описание второй основной задачи для достижения целей проекта."}
+        new TaskItem { Number = 2, Title = "Arquitetura", Description = "Краткое описание второй основной задачи для достижения целей проекта."},
+        new TaskItem { Number = 3, Title = "Arquitetura", Description = "Краткое описание второй основной задачи для достижения целей проекта."}
+
     };
 }
