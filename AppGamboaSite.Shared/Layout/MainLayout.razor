@@ -6,6 +6,8 @@
 <MudSnackbarProvider />
 <MudLayout>
     <MudAppBar Elevation="1">
+        <MudImage Src="_content/AppGamboaSite.Shared/image/imagem_sem_fundo.png" Alt="Logo" Style="height:40px;" Class="ml-4" /> @* Substitua pelo seu logo *@
+        <MudSpacer />
         <div class="d-none d-md-flex justify-content-center w-100">
             <MudBreadcrumbs Items="_items" Separator=""></MudBreadcrumbs>
         </div>
@@ -32,5 +34,6 @@
     <MudMainContent Class="pt-16 px-16">
             @Body
     </MudMainContent>
+    <Footer />
 </MudLayout>
 

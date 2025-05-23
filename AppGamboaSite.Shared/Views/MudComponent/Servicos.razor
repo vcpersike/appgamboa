@@ -1,47 +1,26 @@
-﻿<section id="servicos">
-    <MudPaper Class="section-paper">
-        <MudText Typo="Typo.h4">Serviços</MudText>
-
-        <MudGrid Class="mt-4" GutterSpacing="2">
-            <MudItem xs="12" sm="6" md="4">
-                <MudCard Class="bg-dark text-white">
-                    <MudCardMedia Image="images/web-development.jpg" Height="200" />
-                    <MudCardContent>
-                        <MudText Typo="Typo.h5">Desenvolvimento Web</MudText>
-                        <MudText Typo="Typo.body2">Aplicações modernas para web utilizando Angular, React e Blazor.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Warning">Saiba Mais</MudButton>
-                    </MudCardActions>
-                </MudCard>
+﻿<MudContainer MaxWidth="MaxWidth.Large" Class="my-16">
+    <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true" Class="mb-8">Основные задачи</MudText>
+    <MudGrid Spacing="4" Justify="Justify.Center">
+        @foreach (var task in Tasks)
+        {
+            <MudItem xs="12" md="6">
+                <MudPaper Elevation="0" Class="pa-4 d-flex">
+                    <MudText Typo="Typo.h1" Style="font-size: 6rem; color: #e0e0e0; margin-right: 16px; line-height:1;">@task.Number</MudText>
+                    <div>
+                        <MudText Typo="Typo.h6">@task.Title</MudText>
+                        <MudText Typo="Typo.body2">@task.Description</MudText>
+                    </div>
+                </MudPaper>
             </MudItem>
+        }
+    </MudGrid>
+</MudContainer>
 
-            <MudItem xs="12" sm="6" md="4">
-                <MudCard Class="bg-dark text-white">
-                    <MudCardMedia Image="images/mobile-development.jpg" Height="200" />
-                    <MudCardContent>
-                        <MudText Typo="Typo.h5">Aplicativos Mobile</MudText>
-                        <MudText Typo="Typo.body2">Desenvolvimento de apps nativos e híbridos para Android e iOS.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Warning">Saiba Mais</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-
-            <MudItem xs="12" sm="6" md="4">
-                <MudCard Class="bg-dark text-white">
-                    <MudCardMedia Image="images/rpa.jpg" Height="200" />
-                    <MudCardContent>
-                        <MudText Typo="Typo.h5">Automação RPA</MudText>
-                        <MudText Typo="Typo.body2">Automatização de processos repetitivos com robôs de software.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Warning">Saiba Mais</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-
-        </MudGrid>
-    </MudPaper>
-</section>
+@code {
+    [Parameter]
+    public List<TaskItem> Tasks { get; set; } = new List<TaskItem>
+    {
+        new TaskItem { Number = 1, Title = "Solução", Description = "Краткое описание первой основной задачи, которая должна быть выполнена."},
+        new TaskItem { Number = 2, Title = "Arquitetura", Description = "Краткое описание второй основной задачи для достижения целей проекта."}
+    };
+}

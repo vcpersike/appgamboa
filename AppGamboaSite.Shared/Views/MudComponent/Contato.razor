@@ -1,18 +1,52 @@
-﻿<section id="contato">
-    <MudPaper Class="section-paper">
-        <MudText Typo="Typo.h4">Contato</MudText>
+﻿@inject ISnackbar Snackbar
 
-        <MudCard>
-            <MudForm Model="@model" @ref="form">
-                <MudCardContent>
-                    <MudTextField Label="Nome" Variant="Variant.Filled" FullWidth="true" @bind-Value="model.Name" />
-                    <MudTextField Label="Email" Variant="Variant.Filled" FullWidth="true" @bind-Value="model.Email" />
-                    <MudTextField Label="Telefone" Variant="Variant.Filled" FullWidth="true" @bind-Value="model.Phone" />
-                </MudCardContent>
-                <MudCardActions>
-                    <MudButton Variant="Variant.Filled" Color="Color.Warning" OnClick="Submit">Enviar Mensagem</MudButton>
-                </MudCardActions>
-            </MudForm>
-        </MudCard>
-    </MudPaper>
-</section>
+<MudContainer MaxWidth="MaxWidth.Large" Class="my-16">
+    <MudText Typo="Typo.h4" Align="Align.Left" GutterBottom="true" Class="mb-8">Contato</MudText>
+    <MudGrid Spacing="4" Justify="Justify.Center">
+        <MudItem xs="12" md="6">
+            <EditForm Model="@contactFormModel" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <MudCard Elevation="0">
+                    <MudCardContent>
+                        <MudTextField @bind-Value="contactFormModel.Name"
+                                      For="@(() => contactFormModel.Name)"
+                                      Label="Nome"
+                                      Variant="Variant.Outlined"
+                                      Margin="Margin.Dense" />
+                        <MudTextField @bind-Value="contactFormModel.Email"
+                                      For="@(() => contactFormModel.Email)"
+                                      Label="Email"
+                                      InputType="InputType.Email"
+                                      Variant="Variant.Outlined"
+                                      Margin="Margin.Dense"
+                                      Class="mt-3" />
+                        <MudTextField @bind-Value="contactFormModel.Message"
+                                      For="@(() => contactFormModel.Message)"
+                                      Label="Escreva aui seu texto"
+                                      Variant="Variant.Outlined"
+                                      Lines="5"
+                                      Margin="Margin.Dense"
+                                      Class="mt-3" />
+                    </MudCardContent>
+                    <MudCardActions Class="px-4 pb-4">
+                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">Submeter</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </EditForm>
+        </MudItem>
+        <MudItem xs="12" md="6" Class="d-none d-md-flex align-center justify-center">
+            <MudImage Src="_content/AppGamboaSite.Shared/image/img_02.png" Alt="Contact Person" Fluid="true" Class="rounded" Style="max-height: 400px; object-fit: cover;" />
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    private ContactFormData contactFormModel = new ContactFormData();
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine($"Nome: {contactFormModel.Name}, Email: {contactFormModel.Email}, Mensagem: {contactFormModel.Message}");
+        Snackbar.Add("Сообщение отправлено!", Severity.Success);
+        contactFormModel = new ContactFormData();
+    }
+}
