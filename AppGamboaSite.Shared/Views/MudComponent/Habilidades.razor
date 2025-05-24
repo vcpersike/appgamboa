@@ -55,6 +55,7 @@
     private IEnumerable<ProjectInfo> FeaturedProjects => AllProjects?.Where(p => p.IsFeatured);
 
     private IEnumerable<ProjectInfo> OtherProjects => AllProjects?.Where(p => !p.IsFeatured).Take(3); 
+
     protected override void OnInitialized()
     {
         if (AllProjects == null || !AllProjects.Any())
