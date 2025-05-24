@@ -1,11 +1,36 @@
-﻿<section id="sobre">
-    <MudPaper Class="section-paper">
-        <MudText Typo="Typo.h4">Sobre Nós</MudText>
-        <p>
-            Somos uma empresa do regime Simples Nacional, mas com uma visão ampla e inovadora no desenvolvimento tecnológico. Com vasta experiência em projetos complexos, entregamos soluções de alta qualidade para web, desktop e mobile, sempre focados em eficiência e escalabilidade.
-        </p>
-        <p>
-            Atuamos com as melhores práticas do mercado, como DDD (Domain-Driven Design), SOLID e Clean Architecture, garantindo a sustentabilidade e a evolução dos projetos ao longo do tempo.
-        </p>
-    </MudPaper>
-</section>
+﻿<MudContainer MaxWidth="MaxWidth.Large" Class="my-16">
+    <MudGrid Spacing="5" Justify="Justify.Center">
+        <MudItem xs="12" md="5" Class="d-flex flex-column">
+            <MudGrid Spacing="2">
+                <MudItem xs="6">
+                    <MudImage Src="@(Company?.ImageUrls?.ElementAtOrDefault(0) ?? "_content/AppGamboaSite.Shared/image/img_02.png")" Alt="Company Image 1" Class="rounded" Fluid="true" Style="height:200px; object-fit:cover;" />
+                </MudItem> 
+                <MudItem xs="6">
+                    <MudImage Src="@(Company?.ImageUrls?.ElementAtOrDefault(0) ?? "_content/AppGamboaSite.Shared/image/img_02.png")" Alt="Company Image 1" Class="rounded" Fluid="true" Style="height:200px; object-fit:cover;" />
+                </MudItem>
+                <MudItem xs="6">
+                    <MudImage Src="@(Company?.ImageUrls?.ElementAtOrDefault(0) ?? "_content/AppGamboaSite.Shared/image/img_02.png")" Alt="Company Image 1" Class="rounded" Fluid="true" Style="height:200px; object-fit:cover;" />
+                </MudItem>
+                <MudItem xs="6">
+                    <MudImage Src="@(Company?.ImageUrls?.ElementAtOrDefault(0) ?? "_content/AppGamboaSite.Shared/image/img_02.png")" Alt="Company Image 1" Class="rounded" Fluid="true" Style="height:200px; object-fit:cover;" />
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+        <MudItem xs="12" md="7">
+            <MudText Typo="Typo.h5" GutterBottom="true">@Company?.Title</MudText>
+            <MudText Typo="Typo.body1">
+                @Company?.FullDescription
+            </MudText>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+@code {
+    [Parameter]
+    public CompanyDetails Company { get; set; } = new CompanyDetails
+    {
+        Title = "Soluções",
+        FullDescription = "Apresentação de soluções",
+        ImageUrls = new List<string> { "_content/AppGamboaSite.Shared/image/img_02.png", "_content/AppGamboaSite.Shared/image/img_02.png" } //Exemplo de imagens
+    };
+}

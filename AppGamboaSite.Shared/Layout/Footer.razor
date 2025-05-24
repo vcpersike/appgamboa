@@ -1,0 +1,19 @@
+﻿<MudPaper Elevation="3" Class="pa-4 mt-8" Style="background-color: #333; color: white;">
+    <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+        <MudGrid Spacing="4" Justify="Justify.SpaceBetween">
+            <MudItem xs="12" sm="4" Class="d-flex align-center">
+                <MudImage Src="_content/AppGamboaSite.Shared/image/imagem_sem_fundo.png" Alt="Logo Rodapé" Style="height:30px;" /> @* Substitua pelo seu logo *@
+                <MudText Typo="Typo.caption" Class="ml-2">© @DateTime.Now.Year Gamboa Solutions. Todos os direitos reservados.</MudText>
+            </MudItem>
+            <MudItem xs="12" sm="4" Class="d-flex flex-column align-sm-center">
+                <MudLink Href="/termos-uso" Typo="Typo.body2" Color="Color.Inherit" Underline="Underline.None">Termos de Uso</MudLink>
+                <MudLink Href="/politica-privacidade" Typo="Typo.body2" Color="Color.Inherit" Underline="Underline.None">Política de Privacidade</MudLink>
+            </MudItem>
+            <MudItem xs="12" sm="4" Class="d-flex justify-sm-end align-center">
+                <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Href="https://facebook.com" Target="_blank" />
+                <MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Color="Color.Inherit" Href="https://www.linkedin.com/in/victor-persike-78515b71/" Target="_blank" />
+                <MudIconButton Icon="@Icons.Custom.Brands.Discord" Color="Color.Inherit" Href="https://discordapp.com/users/vcpersike#6258" Target="_blank" />
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+</MudPaper>
