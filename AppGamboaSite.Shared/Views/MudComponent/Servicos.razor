@@ -7,8 +7,8 @@
                 <MudPaper Elevation="0" Class="pa-4 d-flex">
                     <MudText Typo="Typo.h1" Style="font-size: 6rem; color: #e0e0e0; margin-right: 16px; line-height:1;">@task.Number</MudText>
                     <div>
-                        <MudText Typo="Typo.h6">@task.Title</MudText>
-                        <MudText Typo="Typo.body2">@task.Description</MudText>
+                        <MudText Typo="Typo.h6" Align="Align.Justify">@task.Title</MudText>
+                        <MudText Typo="Typo.body2" Align="Align.Justify">@task.Description</MudText>
                     </div>
                 </MudPaper>
             </MudItem>
@@ -20,10 +20,11 @@
     [Parameter]
     public List<TaskItem> Tasks { get; set; } = new List<TaskItem>
     {
-        new TaskItem { Number = 1, Title = "Solução", Description = "Краткое описание первой основной задачи, которая должна быть выполнена."},
-        new TaskItem { Number = 2, Title = "Arquitetura", Description = "Краткое описание второй основной задачи для достижения целей проекта."},
-        new TaskItem { Number = 3, Title = "Arquitetura", Description = "Краткое описание второй основной задачи для достижения целей проекта."},
-        new TaskItem { Number = 4, Title = "Arquitetura", Description = "Краткое описание второй основной задачи для достижения целей проекта."}
+        new TaskItem { Number = 1, Title = "E-commerce Personalizado", Description = "Transforme sua loja online com uma plataforma de e-commerce robusta e escalável. Criamos lojas virtuais totalmente personalizadas, integradas com as melhores ferramentas do mercado para garantir uma experiência de compra intuitiva e segura. Nosso sistema oferece recursos como gestão de estoque, pagamento integrado, relatórios detalhados e personalização de interface para se alinhar com a identidade da sua marca."},
+        new TaskItem { Number = 2, Title = "CRM Inteligente", Description = "Gerencie e otimize o relacionamento com seus clientes com nosso sistema de CRM desenvolvido sob medida. Nossa plataforma permite acompanhar o comportamento dos clientes, automatizar vendas, segmentar campanhas e criar estratégias personalizadas para fidelização. Tudo isso com uma interface simples e poderosa, que vai transformar a maneira como você se comunica com seu público."},
+        new TaskItem { Number = 3, Title = "Automação de Processos (RPA)", Description = "Acelere os processos da sua empresa com a automação inteligente. Com nossa solução de RPA (Automação de Processos Robóticos), você pode eliminar tarefas repetitivas e melhorar a eficiência operacional, liberando sua equipe para focar em atividades de maior valor. De integrações entre sistemas a processos manuais, a automação pode ser implementada de forma ágil e eficiente."},
+        new TaskItem { Number = 4, Title = "APP Mobile Inovador", Description = "Desenvolvemos aplicativos móveis personalizados, seja para Android ou iOS, proporcionando uma experiência fluida e intuitiva para seus usuários. Com foco na performance, segurança e design, nossos apps são criados para aumentar a interação do cliente com a sua marca, oferecendo funcionalidades completas e sempre com a melhor usabilidade."},
+        new TaskItem { Number = 5, Title = "RPA de Finanças", Description = "Transforme a gestão financeira do seu negócio com a automação inteligente. Nosso RPA de Finanças automatiza tarefas como conciliação bancária, geração de relatórios financeiros, controle de fluxo de caixa, entre outras atividades. Reduza erros, ganhe tempo e tome decisões mais assertivas com um sistema integrado e automatizado para sua área financeira."}
 
     };
 }
