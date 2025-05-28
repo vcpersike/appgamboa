@@ -1,0 +1,6 @@
+﻿.image-cover {
+    width: 100% !important; /* garantir largura */
+    height: 12.5rem !important; /* 200px */
+    object-fit: cover !important;
+    display: block; /* para evitar comportamento inline */
+}

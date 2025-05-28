@@ -10,7 +10,6 @@
                     <MudItem xs="12" md="5" Class="pa-4">
                         <MudText Typo="Typo.h3" GutterBottom="true">@featuredProjectItem.Title</MudText>
                         <MudText Typo="Typo.body1">@featuredProjectItem.Description</MudText>
-                        <MudButton Variant="Variant.Outlined" Color="Color.Inherit" Class="mt-4">Узнать больше</MudButton>
                     </MudItem>
                     <MudItem xs="12" md="7">
                         <MudImage Src="@featuredProjectItem.ImageUrl" Alt="@featuredProjectItem.Title" Fluid="true" Class="rounded" Style="max-height: 350px; object-fit: cover; width: 100%;" />
@@ -31,11 +30,9 @@
                         <MudCardMedia Image="@project.ImageUrl" Height="200" />
                         <MudCardContent>
                             <MudText Typo="Typo.h6">@project.Title</MudText>
-                            <MudText Typo="Typo.body2">@project.Description</MudText>
+                            <MudText Typo="Typo.body2" Align="Align.Justify">@project.Description</MudText>
                         </MudCardContent>
-                        <MudCardActions>
-                            <MudButton Variant="Variant.Text" Color="Color.Primary">Подробнее</MudButton>
-                        </MudCardActions>
+                       
                     </MudCard>
                 </MudItem>
             }
@@ -55,17 +52,18 @@
     private IEnumerable<ProjectInfo> FeaturedProjects => AllProjects?.Where(p => p.IsFeatured);
 
     private IEnumerable<ProjectInfo> OtherProjects => AllProjects?.Where(p => !p.IsFeatured).Take(3); 
+
     protected override void OnInitialized()
     {
         if (AllProjects == null || !AllProjects.Any())
         {
             AllProjects = new List<ProjectInfo>
             {
-                new ProjectInfo { Id = 1, Title = "Ecommecer Principal", Description = "Projeto de e-commerce moderno e responsivo.", ImageUrl = "_content/AppGamboaSite.Shared/image/img_02.png", IsFeatured = true },
-                new ProjectInfo { Id = 2, Title = "CRM Avançado", Description = "Sistema CRM completo para gestão de clientes.", ImageUrl = "_content/AppGamboaSite.Shared/image/img_02.png", IsFeatured = true }, // Segundo projeto em destaque
-                new ProjectInfo { Id = 3, Title = "RPA para Finanças", Description = "Automação de processos financeiros com RPA.", ImageUrl = "_content/AppGamboaSite.Shared/image/img_02.png", IsFeatured = false },
-                new ProjectInfo { Id = 4, Title = "Portal Interno", Description = "Portal corporativo para comunicação interna.", ImageUrl = "_content/AppGamboaSite.Shared/image/img_02.png", IsFeatured = false },
-                new ProjectInfo { Id = 5, Title = "App Mobile de Vendas", Description = "Aplicativo móvel para força de vendas.", ImageUrl = "_content/AppGamboaSite.Shared/image/img_02.png", IsFeatured = false },
+                new ProjectInfo { Id = 1, Title = "Ecommecer Principal", Description = "Projeto de e-commerce moderno e responsivo.", ImageUrl = "_content/AppGamboaSite.Shared/image/Ecommecer.png", IsFeatured = true },
+                new ProjectInfo { Id = 2, Title = "CRM Avançado", Description = "Sistema CRM completo para gestão de clientes.", ImageUrl = "_content/AppGamboaSite.Shared/image/crm.png", IsFeatured = true },
+                new ProjectInfo { Id = 3, Title = "RPA para Finanças", Description = "Automação de processos financeiros com RPA.", ImageUrl = "_content/AppGamboaSite.Shared/image/mobile.png", IsFeatured = false },
+                new ProjectInfo { Id = 4, Title = "Portal Interno", Description = "Portal corporativo para comunicação interna.", ImageUrl = "_content/AppGamboaSite.Shared/image/financas.png", IsFeatured = false },
+                new ProjectInfo { Id = 5, Title = "App Mobile de Vendas", Description = "Aplicativo móvel para força de vendas.", ImageUrl = "_content/AppGamboaSite.Shared/image/erp.png", IsFeatured = false },
             };
         }
     }
