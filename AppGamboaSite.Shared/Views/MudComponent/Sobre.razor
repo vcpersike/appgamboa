@@ -33,7 +33,7 @@
         </MudItem>
         <MudItem xs="12" md="7">
             <MudText Typo="Typo.h5" GutterBottom="true">@Company?.Title</MudText>
-            <MudText Typo="Typo.body1">
+            <MudText Typo="Typo.body1" Align="Align.Justify">
                 @Company?.FullDescription
             </MudText>
         </MudItem>
@@ -44,8 +44,9 @@
     [Parameter]
     public CompanyDetails Company { get; set; } = new CompanyDetails
     {
-        Title = "Soluções",
-        FullDescription = "Apresentação de soluções",
+        Title = "Minha Responsabilidade e Compromisso",
+        FullDescription = 
+        "Desenvolver soluções e arquiteturas de software não é apenas um exercício técnico, mas uma expressão clara da responsabilidade que carrego em cada projeto. Cada linha de código escrita, cada decisão arquitetural tomada e cada componente projetado refletem meu compromisso com a qualidade, a eficiência e a sustentabilidade das soluções que entrego. Quando penso em arquitetura de software, enxergo além das tecnologias e frameworks. Vejo uma estrutura viva, pensada para resolver problemas reais, suportar o crescimento contínuo e garantir segurança e confiabilidade no longo prazo. A escolha criteriosa de padrões como DDD (Domain-Driven Design), princípios SOLID, práticas de Clean Code e integração com pipelines automatizados reflete essa responsabilidade. Não se trata apenas de construir sistemas que funcionam, mas de criar soluções robustas, escaláveis e fáceis de manter. Tenho plena consciência de que, ao desenhar uma arquitetura ou implementar um sistema, estou impactando diretamente pessoas, negócios e processos. Por isso, zelo por decisões técnicas que garantam a performance necessária, a segurança dos dados e a flexibilidade para evoluir conforme as necessidades mudam. Desenvolver software, para mim, é um compromisso ético: com a estabilidade, com a clareza, com a transparência. É assumir que minha responsabilidade vai além do código; é sobre entregar valor, garantir qualidade e permitir que a tecnologia seja uma aliada estratégica para o crescimento de quem confia no meu trabalho. Essa é a essência da minha atuação: construir soluções bem estruturadas, com uma arquitetura sólida e uma execução cuidadosa, sabendo que cada decisão técnica molda o futuro do produto e a experiência de quem o utiliza.",
         ImageUrls = new List<string> { "_content/AppGamboaSite.Shared/image/arquitetura_1.png", "_content/AppGamboaSite.Shared/image/solucao.png" }
     };
 }
